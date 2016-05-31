@@ -1,0 +1,5 @@
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\ClassLibrary1\obj\Debug\Library.csprojResolveAssemblyReference.cache
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

@@ -1,0 +1,5 @@
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\UniverseBuilder.dll
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\UniverseBuilder.pdb
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.csprojResolveAssemblyReference.cache
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.dll
+C:\Users\jmddu_000\Google Drive\IHM\MasterDetails\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.pdb

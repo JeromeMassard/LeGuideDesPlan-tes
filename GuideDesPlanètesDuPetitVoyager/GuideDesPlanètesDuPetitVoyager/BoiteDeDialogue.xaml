@@ -1,0 +1,27 @@
+﻿<Window x:Class="GuideDesPlanètesDuPetitVoyager.BoiteDeDialogue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GuideDesPlanètesDuPetitVoyager"
+        mc:Ignorable="d"
+        Title="Avertissement" Height="150" Width="225" Background="Black"
+        Icon="Images\icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2" Height="75" >
+            <Label Content="Voulez-vous vraiment"  Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Oceanic Drift Laser Italic" FontSize="19"/>
+            <Label Name ="demande" Content="quittez ?"  Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Oceanic Drift Laser Italic" FontSize="20"/>
+        </StackPanel>
+        <Button Grid.Column="0" Grid.Row="1" Content="OUI" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="NON" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0"/>
+    </Grid>
+</Window>

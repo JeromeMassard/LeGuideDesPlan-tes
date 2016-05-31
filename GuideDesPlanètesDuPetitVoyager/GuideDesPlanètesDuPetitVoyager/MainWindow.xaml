@@ -1,0 +1,136 @@
+﻿<Window x:Class="GuideDesPlanètesDuPetitVoyager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GuideDesPlanètesDuPetitVoyager"
+        xmlns:vm="clr-namespace:GuideDesPlanètesDuPetitVoyager.ViewModels"
+        mc:Ignorable="d"
+        Title="Le guide des planètes du petit Voyager" Height="350" Width="525" Background="Black"
+        Icon="Images\icon.png"
+        Name="LeGuideDesPlaneteDuPetitVoyager"
+        d:DataContext="{d:DesignInstance vm:ListPlanete, IsDesignTimeCreatable=True}"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Source="Images\fondliste.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+        <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Source="Images\fond.jpg" HorizontalAlignment="Left"/>
+        <Image Source="Images\Baniere2.jpg" Grid.ColumnSpan="2" />
+
+        <TextBox Name="NomPlanete" Grid.Column="1" Grid.Row="1" Text="{Binding Planete.Nom , UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" IsReadOnly="True" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" FontWeight="Bold" >
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0" />
+            </TextBox.Background>
+        </TextBox>
+        <Grid Grid.Column="1" Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,2,0,2" HorizontalAlignment="Center">
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Volume :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.Volume ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Bottom" Width="50" Margin="0,0,0,0.4"/>
+                        <TextBox Text="Km3" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" >
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Masse :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.Masse , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="75"/>
+                        <TextBox Text="Tonnes" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center" Width="40"/>
+                    </StackPanel>
+                </Border>
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Anneaux :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.Anneaux , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="25"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,2,0,2" HorizontalAlignment="Center">
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Découverte :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.AnnéeDecouverte , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="30"/>
+                    </StackPanel>
+                </Border>
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Satellites :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.NbreSatellite , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="25"/>
+                    </StackPanel>
+                </Border>
+                <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox Text="Révolution:" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                        <TextBox Text="{Binding Planete.PeriodeRevo , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="50"/>
+                        <TextBox Text="jours" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Padding="3" Margin="0,2,0,2">
+                    <Border.Background>
+                        <SolidColorBrush Color="Black" Opacity="0"/>
+                    </Border.Background>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Planete.Image ,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="recherche" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14"  >Voyager...</TextBox>
+            <Button Grid.Column="1">
+                <Image Source="Images/iconRech.png" />
+            </Button>
+
+
+        </Grid>
+        <ListBox Name="ListP" ItemsSource="{Binding Univers}" SelectedItem="{Binding Planete}" Grid.Row="1" Grid.Column="0" Background="#7F000000" BorderThickness="0" Grid.RowSpan="3" Foreground="White" FontWeight="Bold" Margin="-5,22.8,5,-0.2"  />
+        <Grid Grid.Column="1" Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Content="Ajouter" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="0" Padding="2.5" Command="{Binding OnAddCommande}"/>
+            <Button Content="Modifier" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Padding="2.5" Command="{Binding OnEditCommande}"/>
+            <Button Content="Supprimer" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="2" Padding="2.5" Command="{Binding OnDeleteCommande}"/>
+        </Grid>
+    </Grid>
+</Window>
