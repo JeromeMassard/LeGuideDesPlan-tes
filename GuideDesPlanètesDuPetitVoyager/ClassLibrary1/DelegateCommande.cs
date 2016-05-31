@@ -11,6 +11,7 @@ namespace Library
     {
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
