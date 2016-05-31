@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GuideDesPlanètesDuPetitVoyager.Event;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
@@ -22,19 +23,25 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             OnCancel = new DelegateCommande(OnCancelCommand, CanCancelCommand);
         }
 
+        public void CloseWindows()
+        {
+            this.close();
+        }
+
         private void OnAddAction(object obj)
         {
-               _newplanete
+
+            EventClick.GetClick() += CloseWindows();
         }
 
         private void OnCancelCommand(object obj)
         {
-            //Close();
+            //this.Close();
         }
 
         private bool CanExecuteAdd(object obj)
         {
-            if ()
+            if(_newplanete != null )
                 return true;
             return false;
         }

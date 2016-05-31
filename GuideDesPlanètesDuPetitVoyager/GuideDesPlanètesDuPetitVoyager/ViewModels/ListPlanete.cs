@@ -79,7 +79,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnEditCommand(object o) // a refaire c'est pas bon Fmodif
         {
-           
+            _planete = (Planete) o;
+            Fajout edit = new Fajout(_planete);
+            edit.Name = "Edit";
+            edit.ShowDialog();
         }
 
         private void OnTextSearch (object o)
@@ -90,12 +93,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void OnSearchAction(object o)
         {
             List<Planete> Lp = new List<Planete>();
-            foreach (Planete p in Univers)
-                if (p.Nom.Equals(/*Nom de la zone de recup du nom*/))
+          /*  foreach (Planete p in Univers)
+                if (p.Nom.Equals(/*Nom de la zone de recup du nom*))
                 {
                     Lp.Add(p);
                     Univers = Lp;         
-              }
+              }*/
         }
 
 
@@ -111,7 +114,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private bool CanDeleteCommand(object obj)
         {
-            return true;
+            return Planete != null;
         }
         
 
@@ -130,11 +133,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             }
             else
                 return true;
-        }
-
-        public static implicit operator ListPlanete(AjoutPlanete v)
-        {
-            throw new NotImplementedException();
         }
     }
 
