@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GuideDesPlanètesDuPetitVoyager.Event
 {
-    class EventClick
+    public class EventClick
     {
-
+        #region singleton
         private static EventClick _click { get; set; }
         private EventClick() { }
         public static EventClick GetClick()
@@ -19,6 +19,7 @@ namespace GuideDesPlanètesDuPetitVoyager.Event
             }
             return _click;
         }
+        #endregion  
 
         public event EventHandler Handler;
 

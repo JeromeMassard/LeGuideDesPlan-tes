@@ -13,19 +13,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnAddNew { get; set; }
         public DelegateCommande OnCancel { get; set; }
 
-        
-        private Planete _newplanete; // planete pour les test
-
+        public Planete Planete { get; set; }
         public AjoutPlanete(Planete _planete)
         {
-            _newplanete = _planete;
+            Planete = _planete;
             OnAddNew = new DelegateCommande(OnAddAction, CanExecuteAdd);
             OnCancel = new DelegateCommande(OnCancelCommand, CanCancelCommand);
-        }
-
-        public void CloseWindows()
-        {
-           // this.close();
         }
 
         private void OnAddAction(object obj)
@@ -36,16 +29,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnCancelCommand(object obj)
         {
-            //this.Close();
+            EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
 
         private bool CanExecuteAdd(object obj)
         {
-            if(_newplanete != null )
-                return true;
-            Info i = new Info("Vous devez remplir les champs pour creer une planète");
-            i.ShowDialog();
-            return false;
+            
+            return true;
         }
 
         private bool CanCancelCommand(object obj)

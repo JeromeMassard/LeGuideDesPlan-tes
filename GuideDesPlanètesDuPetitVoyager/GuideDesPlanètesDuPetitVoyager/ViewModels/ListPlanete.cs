@@ -81,13 +81,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
 
-      /*  private void CloseAddView(object sender, EventArgs e)
+        private void CloseView(object sender, EventArgs e)
         {
             add.Close();
-
-            ButtonPressedEvent.GetEvent().Handler -= CloseAddView;
+            Univers.Add(Planete);
+            EventClick.GetClick().Handler -= CloseView;
         }
-        */
 
         private void OnDeleteCommand(object obj)
         {
@@ -96,19 +95,31 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnAddAction(object o)
         {
-           // ButtonPressedEvent.GetEvent().Handler += CloseAddView;
+            EventClick.GetClick().Handler += CloseView;
 
-            add = new Fajout(_planete);
+            add = new Fajout(Planete);
             add.Name = "Ajout";
             add.ShowDialog();
             
-            
+           /* foreach(Planete p in Univers.ToList())
+            {
+             
+                    if (_planete.Equals(p))
+                    {
+                        Info infoAdd = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
+                        infoAdd.ShowDialog();
+                    }
+                    else
+                    {
+                        Univers.Add(_planete);
+                    }
+            }
+            */
         }
 
         private void OnEditCommand(object o) // a refaire c'est pas bon Fmodif
         {
-            _planete = Planete;
-            Fajout edit = new Fajout(_planete);
+            Fajout edit = new Fajout(Planete);
             edit.Name = "Edit";
             edit.ShowDialog();
         }
