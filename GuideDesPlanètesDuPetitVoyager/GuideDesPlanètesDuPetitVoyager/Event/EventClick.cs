@@ -19,5 +19,15 @@ namespace GuideDesPlanètesDuPetitVoyager.Event
             }
             return _click;
         }
+
+        public event EventHandler Handler;
+
+        public void OnButtonPressedHandler(EventArgs e)
+        {
+            if (Handler != null)
+            {
+                Handler(this, e);
+            }
+        }
     }
 }

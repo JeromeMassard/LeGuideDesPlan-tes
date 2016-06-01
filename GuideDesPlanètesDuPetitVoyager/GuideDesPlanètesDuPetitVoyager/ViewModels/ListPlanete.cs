@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using UniverseBuilder.Entites;
 using GuideDesPlanètesDuPetitVoyager.Maker;
 using UniverseBuilder;
+using GuideDesPlanètesDuPetitVoyager.Event;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
@@ -22,7 +23,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande ClickOnSearch { get; set; }
 
 
-        
+        private Fajout add { get; set; }
+
+
+        private bool _visibility;
+
+
 
         private Planete _planete;
         private List<Planete> _univers;  // liste des planètes.
@@ -47,7 +53,18 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             get { return _univers; }
             set { _univers = value; }
         }
+        
+        public bool Visibility
+        {
+            get { return _visibility; }
+            set
+            {
+                _visibility = value;
+                NotifyPropertyChanged("Visibility");
+            }
+        }
 
+        public int CloseAddView { get; private set; }
 
         public ListPlanete()
         {
@@ -60,9 +77,17 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
             ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
             ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
+           
         }
 
-      
+
+      /*  private void CloseAddView(object sender, EventArgs e)
+        {
+            add.Close();
+
+            ButtonPressedEvent.GetEvent().Handler -= CloseAddView;
+        }
+        */
 
         private void OnDeleteCommand(object obj)
         {
@@ -71,15 +96,18 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnAddAction(object o)
         {
-            Fajout add = new Fajout(_planete);
+           // ButtonPressedEvent.GetEvent().Handler += CloseAddView;
+
+            add = new Fajout(_planete);
             add.Name = "Ajout";
             add.ShowDialog();
+            
             
         }
 
         private void OnEditCommand(object o) // a refaire c'est pas bon Fmodif
         {
-            _planete = (Planete) o;
+            _planete = Planete;
             Fajout edit = new Fajout(_planete);
             edit.Name = "Edit";
             edit.ShowDialog();
