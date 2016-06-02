@@ -24,11 +24,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
 
         private Fajout add { get; set; }
+        private FEdit edit { get; set; }
 
 
-        private bool _visibility;
+        private bool AlreadyExiste = false;
 
-
+    
 
         private Planete _planete;
         private ObservableCollection<Planete> _univers;  // liste des planètes.
@@ -55,17 +56,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             set { _univers = value; }
         }
         
-        public bool Visibility
-        {
-            get { return _visibility; }
-            set
-            {
-                _visibility = value;
-                NotifyPropertyChanged("Visibility");
-            }
-        }
+     
 
-        public int CloseAddView { get; private set; }
+     
 
         public ListPlanete()
         {
@@ -82,49 +75,87 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
 
-        private void CloseView(object sender, EventArgs e)
+
+
+        #region close
+        private void CloseAddView(object sender, EventArgs e)
         {
             add.Close();
-
-            EventClick.GetClick().Handler -= CloseView;
+            EventClick.GetClick().Handler -= CloseAddView;
         }
+
+
+        private void CloseEditView(object sender, EventArgs e)
+        {
+            edit.Close();
+            EventClick.GetClick().Handler -= CloseEditView;
+        }
+
+
+        #endregion
 
         #region Add/Edit/delete
 
         private void OnAddAction(object o)
         {
-            EventClick.GetClick().Handler += CloseView;
+            EventClick.GetClick().Handler += CloseAddView;
 
             add = new Fajout();
             add.Name = "Ajout";
             add.ShowDialog();
 
-            Univers.Add(add.ViewModelAjout.Planete);
-            NotifyPropertyChanged("Univers");
-     
-
-            /* foreach(Planete p in Univers.ToList())
+            
+             foreach(Planete p in Univers.ToList())
              {
+                
+                     if ( add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
+                     {
+                        AlreadyExiste = true;
+                     }
+                     
+            }
 
-                     if (_planete.Equals(p))
-                     {
-                         Info infoAdd = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
-                         infoAdd.ShowDialog();
-                     }
-                     else
-                     {
-                         Univers.Add(_planete);
-                     }
-             }
-             */
+            if(AlreadyExiste == true)
+            {
+                Info info = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
+                info.ShowDialog();
+            }
+            else
+            { //il ne faut pas que l'ajout se face quand on click sur cancel
+                if (add.ViewModelAjout.CLickOnCancel == false)
+                {
+                    Univers.Add(add.ViewModelAjout.Planete);
+                    NotifyPropertyChanged("Univers");
+                }
+            }
+
+
         }
 
         private void OnEditCommand(object o) 
         {
-            FEdit edit = new FEdit(Planete);
+            EventClick.GetClick().Handler += CloseEditView;
+
+            edit = new FEdit(Planete);
             edit.Name = "Edit";
             edit.ShowDialog();
+            if (edit.ViewModelEdit.CLickOnCancel == false)
+            {
+                NotifyPropertyChanged("Planete");
+                foreach (Planete p in Univers.ToList())
+                {
+                    if (edit.ViewModelEdit.Planete.Nom.Equals(p.Nom))
+                    {
+
+                        Univers.Remove(p);
+                        Univers.Add(edit.ViewModelEdit.Planete);
+                        NotifyPropertyChanged("Univers");
+                    }
+                }
+            }
         }
+
+       
 
         private void OnDeleteCommand(object obj)
         {
@@ -146,7 +177,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private bool CanDeleteCommand(object obj)
         {
-            return this.Planete != null;
+            return Planete != null;
         }
 
         #endregion

@@ -24,5 +24,10 @@ namespace GuideDesPlanètesDuPetitVoyager
             InitializeComponent();
             this.info.Text = infodite;
         }
+
+        private void ClickOOK(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

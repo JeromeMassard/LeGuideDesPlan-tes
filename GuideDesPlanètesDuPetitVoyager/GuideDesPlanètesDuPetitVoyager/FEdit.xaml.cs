@@ -20,12 +20,12 @@ namespace GuideDesPlanètesDuPetitVoyager
     /// </summary>
     public partial class FEdit : Window
     {
-        private AjoutPlanete _viewModelEdit;
+        public AjoutPlanete ViewModelEdit;
         public FEdit(Planete _planete)
         {
             InitializeComponent();
-            _viewModelEdit = new AjoutPlanete(_planete);
-            DataContext = _viewModelEdit;
+            ViewModelEdit = new AjoutPlanete(_planete);
+            DataContext = ViewModelEdit;
         }
     }
 }

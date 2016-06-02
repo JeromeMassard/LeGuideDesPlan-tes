@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GuideDesPlanètesDuPetitVoyager"
         mc:Ignorable="d"
-        Title="Info" Height="150" Width="225" Background="Black" FontFamily="Oceanic Drift Laser Italic"
+        Title="Info" Height="150" Width="225" Background="Black" FontFamily="Oceanic Drift Laser Italic" 
         Icon="Images\icon.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="info" TextWrapping="Wrap" Text="test test test test test " Foreground="White" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="198" Height="78" Margin="10,10,10,2" />
-        <Button Grid.Row="1" HorizontalAlignment="Center" Content="Ok" FontSize="20" Width="50" Margin="3"/>
+        <TextBlock Name="info" TextWrapping="Wrap" Text="test test test test test " Foreground="White" FontSize="16" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="198" Height="78" Margin="10,10,10,2" TextAlignment="Center" />
+        <Button Grid.Row="1" HorizontalAlignment="Center" Content="Ok" FontSize="20" Width="50" Margin="3" Click="ClickOOK"/>
     </Grid>
 </Window>

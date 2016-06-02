@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("planim/ter.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("planim/mars.jpg")]
 
 

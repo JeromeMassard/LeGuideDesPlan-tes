@@ -14,6 +14,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnCancel { get; set; }
         public DelegateCommande OnModify { get; set; }
 
+        public bool CLickOnCancel = false;
+
         public Planete Planete { get; set; }
 
         public AjoutPlanete(Planete _planete)
@@ -41,14 +43,15 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #region Cancel
         private void OnCancelCommand(object obj)
         {
+            CLickOnCancel = true;
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
 
-       
+
 
         private bool CanCancel(object obj)
         {
-            return true; 
+            return true;
         }
         #endregion
 
