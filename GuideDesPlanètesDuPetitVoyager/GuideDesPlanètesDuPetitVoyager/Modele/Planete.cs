@@ -25,7 +25,7 @@ namespace GuideDesPlanètesDuPetitVoyager
             }
             set
             {
-                _image = value;
+                _image = @value;
             }
         }
 
