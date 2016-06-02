@@ -22,13 +22,13 @@ namespace GuideDesPlanètesDuPetitVoyager
     /// </summary>
     public partial class Fajout : Window
     {
-        private AjoutPlanete _viewModelAjout;
+        public AjoutPlanete ViewModelAjout;
         
-        public Fajout(Planete Planete)
+        public Fajout()
         {
             InitializeComponent();
-            _viewModelAjout = new AjoutPlanete(new Planete());
-            DataContext = _viewModelAjout;
+            ViewModelAjout = new AjoutPlanete(new Planete());
+            DataContext = ViewModelAjout;
         }
 
     }

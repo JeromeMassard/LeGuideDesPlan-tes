@@ -21,15 +21,15 @@ namespace GuideDesPlanètesDuPetitVoyager
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ListPlanete _viewModelUnivers;
+        public ListPlanete ViewModelUnivers;
 
 
         public List<Planete> lPlanete { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            _viewModelUnivers = new ListPlanete();
-            DataContext = _viewModelUnivers;
+            ViewModelUnivers = new ListPlanete();
+            DataContext = ViewModelUnivers;
         }
 
     }

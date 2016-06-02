@@ -12,7 +12,7 @@ using GuideDesPlanètesDuPetitVoyager.Event;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
-    class ListPlanete : NotifyPropertyChangedBase
+    public class ListPlanete : NotifyPropertyChangedBase
     {
 
         public DelegateCommande OnAddCommande { get; set; }
@@ -31,11 +31,11 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
 
         private Planete _planete;
-        private List<Planete> _univers;  // liste des planètes.
+        private ObservableCollection<Planete> _univers;  // liste des planètes.
 
-        private List<Planete> Lp; // Liste de planete apres recherche.
+        private ObservableCollection<Planete> Lp; // Liste de planete apres recherche.
 
-        private List<Planete> ajoutPlanete { get; set; }
+    //    private List<Planete> ajoutPlanete { get; set; }
 
         public Planete Planete
         {
@@ -46,9 +46,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 NotifyPropertyChanged("Planete");
                 NotifyPropertyChanged("ListPlanete");
                 OnEditCommande.RaiseCanExecuteChanged();
+                OnDeleteCommande.RaiseCanExecuteChanged();
             }
        }
-        public List<Planete> Univers
+        public ObservableCollection<Planete> Univers
         {
             get { return _univers; }
             set { _univers = value; }
@@ -69,7 +70,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public ListPlanete()
         {
             Univers = PlaneteMaker.AllPlaneteEntiteToPlanete(PlaneteDAO.GetAllPlanete());
-         
+            
 
             OnAddCommande = new DelegateCommande(OnAddAction, CanExecuteAdd);
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
@@ -94,10 +95,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         {
             EventClick.GetClick().Handler += CloseView;
 
-            add = new Fajout(Planete);
+            add = new Fajout();
             add.Name = "Ajout";
             add.ShowDialog();
-            Univers.Add(Planete);
+
+            Univers.Add(add.ViewModelAjout.Planete);
+            NotifyPropertyChanged("Univers");
+     
 
             /* foreach(Planete p in Univers.ToList())
              {
@@ -125,6 +129,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void OnDeleteCommand(object obj)
         {
            Univers.Remove(Planete);
+            NotifyPropertyChanged("Univers");
            
         }
 
@@ -141,8 +146,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private bool CanDeleteCommand(object obj)
         {
-            //return this.Planete != null;
-            return true;
+            return this.Planete != null;
         }
 
         #endregion

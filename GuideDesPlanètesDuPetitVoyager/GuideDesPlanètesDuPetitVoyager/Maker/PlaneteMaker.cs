@@ -7,6 +7,8 @@ using GuideDesPlanètesDuPetitVoyager.ViewModels;
 using GuideDesPlanètesDuPetitVoyager;
 using UniverseBuilder.Entites;
 using Library;
+using System.Collections.ObjectModel;
+using ClassLibrary1.Extension;
 
 namespace GuideDesPlanètesDuPetitVoyager.Maker
 {
@@ -27,9 +29,9 @@ namespace GuideDesPlanètesDuPetitVoyager.Maker
             };
         }
 
-        public static List<Planete> AllPlaneteEntiteToPlanete(List<PlaneteEntite> list)
+        public static ObservableCollection<Planete> AllPlaneteEntiteToPlanete(List<PlaneteEntite> list)
         {
-            return list.Select(PlaneteEntiteToPlaneteModele).ToList();
+            return list.Select(PlaneteEntiteToPlaneteModele).ToList().ToObservableCollection();
         }
 
 

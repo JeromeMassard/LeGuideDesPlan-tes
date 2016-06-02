@@ -8,20 +8,20 @@ using GuideDesPlanètesDuPetitVoyager.Event;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
-    class AjoutPlanete
+    public class AjoutPlanete : NotifyPropertyChangedBase
     {
         public DelegateCommande OnAddNew { get; set; }
         public DelegateCommande OnCancel { get; set; }
         public DelegateCommande OnModify { get; set; }
 
+        public Planete Planete { get; set; }
 
         public AjoutPlanete(Planete _planete)
         {
-
             OnAddNew = new DelegateCommande(OnAddAction, CanAdd);
             OnCancel = new DelegateCommande(OnCancelCommand, CanCancel);
             OnModify = new DelegateCommande(OnModifyAction, CanModify);
-
+            Planete = _planete;
         }
 
         #region Add
