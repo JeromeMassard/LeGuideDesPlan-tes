@@ -23,6 +23,7 @@ namespace GuideDesPlanètesDuPetitVoyager.Maker
                 AnnéeDecouverte = planete.AnnéeDecouverte,
                 NbreSatellite = planete.NbreSatellite,
                 PeriodeRevo = planete.PeriodeRevo,
+                PlanIm = planete.PlanIm
             };
         }
 

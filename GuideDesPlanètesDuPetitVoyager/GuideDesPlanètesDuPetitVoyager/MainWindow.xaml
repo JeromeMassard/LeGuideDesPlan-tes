@@ -102,7 +102,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="{Binding Planete.Image ,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                        <Image Source="{Binding Planete.PlanIm ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
                     </Grid>
                 </Border>
             </Grid>

@@ -84,14 +84,11 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void CloseView(object sender, EventArgs e)
         {
             add.Close();
-            Univers.Add(Planete);
+
             EventClick.GetClick().Handler -= CloseView;
         }
 
-        private void OnDeleteCommand(object obj)
-        {
-           // Univers.Remove();
-        }
+        #region Add/Edit/delete
 
         private void OnAddAction(object o)
         {
@@ -100,29 +97,57 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             add = new Fajout(Planete);
             add.Name = "Ajout";
             add.ShowDialog();
-            
-           /* foreach(Planete p in Univers.ToList())
-            {
-             
-                    if (_planete.Equals(p))
-                    {
-                        Info infoAdd = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
-                        infoAdd.ShowDialog();
-                    }
-                    else
-                    {
-                        Univers.Add(_planete);
-                    }
-            }
-            */
+            Univers.Add(Planete);
+
+            /* foreach(Planete p in Univers.ToList())
+             {
+
+                     if (_planete.Equals(p))
+                     {
+                         Info infoAdd = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
+                         infoAdd.ShowDialog();
+                     }
+                     else
+                     {
+                         Univers.Add(_planete);
+                     }
+             }
+             */
         }
 
-        private void OnEditCommand(object o) // a refaire c'est pas bon Fmodif
+        private void OnEditCommand(object o) 
         {
-            Fajout edit = new Fajout(Planete);
+            FEdit edit = new FEdit(Planete);
             edit.Name = "Edit";
             edit.ShowDialog();
         }
+
+        private void OnDeleteCommand(object obj)
+        {
+           Univers.Remove(Planete);
+           
+        }
+
+
+        private bool CanExecuteAdd(object o)
+        {
+            return true;
+        }
+
+        private bool CanEditCommand(Object o)
+        {
+            return Planete != null;
+        }
+
+        private bool CanDeleteCommand(object obj)
+        {
+            //return this.Planete != null;
+            return true;
+        }
+
+        #endregion
+
+        #region Search
 
         private void OnTextSearch (object o)
         {
@@ -141,20 +166,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
 
-        private bool CanExecuteAdd(object o)
-        {
-            return true;
-        }
-
-        private bool CanEditCommand(Object o)
-        {
-            return Planete != null;
-        }
-
-        private bool CanDeleteCommand(object obj)
-        {
-            return Planete != null;
-        }
+       
         
 
 
@@ -173,6 +185,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             else
                 return true;
         }
+        #endregion
+
     }
 
 }

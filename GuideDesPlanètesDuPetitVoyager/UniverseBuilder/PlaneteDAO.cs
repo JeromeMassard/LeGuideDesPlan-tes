@@ -22,7 +22,8 @@ namespace UniverseBuilder
                     Anneaux = 8.ToString(),
                     AnnéeDecouverte = 1975,
                     NbreSatellite = 3,
-                    PeriodeRevo = 26
+                    PeriodeRevo = 26,
+                    PlanIm = @"PlanIm\sat.jpe"
                 },
                 new PlaneteEntite
                 {
@@ -32,7 +33,9 @@ namespace UniverseBuilder
                     Anneaux = 0.ToString(),
                     AnnéeDecouverte = -650000000,
                     NbreSatellite = 1,
-                    PeriodeRevo = 365
+                    PeriodeRevo = 365,
+                    PlanIm = @"PlanIm\Ter.jpg"
+
                 },
                 new PlaneteEntite
                 {
@@ -42,7 +45,8 @@ namespace UniverseBuilder
                     Anneaux = 0.ToString(),
                     AnnéeDecouverte = 1980,
                     NbreSatellite = 5,
-                    PeriodeRevo = 560
+                    PeriodeRevo = 560,
+                    PlanIm = @"PlanIm\nep.jpe"
                 }
             };
         }

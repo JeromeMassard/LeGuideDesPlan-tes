@@ -21,5 +21,7 @@ namespace UniverseBuilder.Entites
         public int NbreSatellite { get; set; }
 
         public int PeriodeRevo { get; set; }
+
+        public string PlanIm { get; set; }
     }
 }

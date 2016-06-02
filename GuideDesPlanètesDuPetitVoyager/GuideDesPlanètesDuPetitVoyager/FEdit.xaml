@@ -15,7 +15,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Image Source="Images\AjoutFond.jpg" Grid.RowSpan="3"/>
-        <Label Grid.Row="0" Content="Ajout d'un astre" FontFamily="Oceanic Drift Laser Italic" Foreground="White" FontSize="25" HorizontalAlignment="Center" />
+        <Label Grid.Row="0" Content="Modifier un astre" FontFamily="Oceanic Drift Laser Italic" Foreground="White" FontSize="25" HorizontalAlignment="Center" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -88,7 +88,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Valider"  Grid.Column="0" Command="{Binding OnAddNew}" />
+            <Button Content="Valider"  Grid.Column="0" Command="{Binding OnModify}" />
             <Button Content="Annuler"  Grid.Column="1" Command="{Binding OnCancel}" />
 
 

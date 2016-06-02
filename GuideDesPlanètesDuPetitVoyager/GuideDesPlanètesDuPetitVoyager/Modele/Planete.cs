@@ -17,8 +17,7 @@ namespace GuideDesPlanètesDuPetitVoyager
         private int _periode;
         private int _nbSat;
 
-
-        public string Image
+        public string PlanIm
         {
             get
             {

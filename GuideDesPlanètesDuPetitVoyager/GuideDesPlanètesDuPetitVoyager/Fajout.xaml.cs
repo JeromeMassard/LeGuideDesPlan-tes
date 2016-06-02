@@ -24,7 +24,7 @@ namespace GuideDesPlanètesDuPetitVoyager
     {
         private AjoutPlanete _viewModelAjout;
         
-        public Fajout(Planete _planete)
+        public Fajout(Planete Planete)
         {
             InitializeComponent();
             _viewModelAjout = new AjoutPlanete(new Planete());

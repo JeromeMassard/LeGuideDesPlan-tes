@@ -12,35 +12,59 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
     {
         public DelegateCommande OnAddNew { get; set; }
         public DelegateCommande OnCancel { get; set; }
+        public DelegateCommande OnModify { get; set; }
 
-        public Planete Planete { get; set; }
+
         public AjoutPlanete(Planete _planete)
         {
-            Planete = _planete;
-            OnAddNew = new DelegateCommande(OnAddAction, CanExecuteAdd);
-            OnCancel = new DelegateCommande(OnCancelCommand, CanCancelCommand);
+
+            OnAddNew = new DelegateCommande(OnAddAction, CanAdd);
+            OnCancel = new DelegateCommande(OnCancelCommand, CanCancel);
+            OnModify = new DelegateCommande(OnModifyAction, CanModify);
+
         }
+
+        #region Add
 
         private void OnAddAction(object obj)
         {
 
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
+        private bool CanAdd(object obj)
+        {
 
+            return true;
+        }
+        #endregion
+
+        #region Cancel
         private void OnCancelCommand(object obj)
         {
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
 
-        private bool CanExecuteAdd(object obj)
-        {
-            
-            return true;
-        }
+       
 
-        private bool CanCancelCommand(object obj)
+        private bool CanCancel(object obj)
         {
             return true; 
         }
+        #endregion
+
+        #region Modify
+
+        private void OnModifyAction(object obj)
+        {
+
+            EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
+        }
+        private bool CanModify(object obj)
+        {
+
+            return true;
+        }
+        #endregion
+
     }
 }
