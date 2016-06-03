@@ -34,7 +34,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private Planete _planete;
         private ObservableCollection<Planete> _univers;  // liste des planètes.
 
-        private ObservableCollection<Planete> Lp; // Liste de planete apres recherche.
+      //  private ObservableCollection<Planete> Lp; // Liste de planete apres recherche.
 
     //    private List<Planete> ajoutPlanete { get; set; }
 
@@ -69,8 +69,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
             OnDeleteCommande = new DelegateCommande(OnDeleteCommand, CanDeleteCommand);
 
-            ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
-            ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
+       //     ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
+         //   ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
            
         }
 
@@ -104,15 +104,16 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             add.Name = "Ajout";
             add.ShowDialog();
 
-            
-             foreach(Planete p in Univers.ToList())
+            if (add.ViewModelAjout.CLickOnAdd == true)
+            {
+                foreach (Planete p in Univers.ToList())
              {
-                
-                     if ( add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
-                     {
-                        AlreadyExiste = true;
-                     }
-                     
+
+                if (add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
+                {
+                    AlreadyExiste = true;
+                }
+                else { AlreadyExiste = false; }
             }
 
             if(AlreadyExiste == true)
@@ -121,12 +122,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 info.ShowDialog();
             }
             else
-            { //il ne faut pas que l'ajout se face quand on click sur cancel
-                if (add.ViewModelAjout.CLickOnCancel == false)
-                {
+            {
                     Univers.Add(add.ViewModelAjout.Planete);
                     NotifyPropertyChanged("Univers");
-                }
+            }
             }
 
 
@@ -139,7 +138,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             edit = new FEdit(Planete);
             edit.Name = "Edit";
             edit.ShowDialog();
-            if (edit.ViewModelEdit.CLickOnCancel == false)
+            if (edit.ViewModelEdit.CLickOnAdd == true)
             {
                 NotifyPropertyChanged("Planete");
                 foreach (Planete p in Univers.ToList())
@@ -204,7 +203,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
        
         
 
-
+/* futur amelioration pour recherche
         private bool CanChangeTextSearch(object o)
         {
             return true;
@@ -219,9 +218,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             }
             else
                 return true;
-        }
+        }*/
         #endregion
-
+        
     }
 
 }

@@ -14,7 +14,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnCancel { get; set; }
         public DelegateCommande OnModify { get; set; }
 
-        public bool CLickOnCancel = false;
+        public bool CLickOnAdd = false;
 
         public Planete Planete { get; set; }
 
@@ -30,12 +30,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnAddAction(object obj)
         {
+            CLickOnAdd = true;
 
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
         private bool CanAdd(object obj)
         {
-
             return true;
         }
         #endregion
@@ -43,8 +43,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #region Cancel
         private void OnCancelCommand(object obj)
         {
-            CLickOnCancel = true;
-            EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
+             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
 
 
@@ -59,6 +58,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnModifyAction(object obj)
         {
+            CLickOnAdd = true;
 
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }

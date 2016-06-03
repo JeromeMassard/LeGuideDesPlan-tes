@@ -22,7 +22,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-
+        
         <Image Source="Images\fondliste.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
         <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Source="Images\fond.jpg" HorizontalAlignment="Left"/>
         <Image Source="Images\Baniere2.jpg" Grid.ColumnSpan="2" />
@@ -114,7 +114,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="recherche" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14"  >Voyager...</TextBox>
+                <TextBox Name="recherche" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14"  >Voyager...</TextBox>
+    
             <Button Grid.Column="1">
                 <Image Source="Images/iconRech.png" />
             </Button>
@@ -128,7 +129,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Content="Ajouter" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="0" Padding="2.5" Command="{Binding OnAddCommande}"/>
+            
+            <Button Content="Ajouter" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="0" Padding="2.5" Command="{Binding OnAddCommande}" />
             <Button Content="Modifier" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Padding="2.5" Command="{Binding OnEditCommande}"/>
             <Button Content="Supprimer" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="2" Padding="2.5" Command="{Binding OnDeleteCommande}"/>
         </Grid>
