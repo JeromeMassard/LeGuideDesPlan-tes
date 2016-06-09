@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Maker\PlaneteMaker.cs" />
     <Compile Include="ViewModels\AjoutPlanete.cs" />
+    <Compile Include="ViewModels\InfoBD.cs" />
     <Compile Include="ViewModels\ListPlanete.cs" />
     <Page Include="BoiteDeDialogue.xaml">
       <SubType>Designer</SubType>

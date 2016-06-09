@@ -122,7 +122,7 @@
 
 
         </Grid>
-        <ListBox Name="ListP" ItemsSource="{Binding Univers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Planete}" Grid.Row="1" Grid.Column="0" Background="#7F000000" BorderThickness="0" Grid.RowSpan="3" Foreground="White" FontWeight="Bold" Margin="-5,22.8,5,-0.2"  />
+        <ListBox Name="ListP" ItemsSource="{Binding Univers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Planete}" Grid.Row="1" Grid.Column="0" Background="#7F000000" BorderThickness="0" Grid.RowSpan="3" Foreground="White" FontWeight="Bold" Margin="-5,22.8,5,-0.2" />
         <Grid Grid.Column="1" Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

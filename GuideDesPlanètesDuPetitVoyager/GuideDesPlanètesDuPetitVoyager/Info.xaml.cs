@@ -19,6 +19,7 @@ namespace GuideDesPlanètesDuPetitVoyager
     /// </summary>
     public partial class Info : Window
     {
+
         public Info(String infodite)
         {
             InitializeComponent();

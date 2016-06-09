@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GuideDesPlanètesDuPetitVoyager.Event;
+using GuideDesPlanètesDuPetitVoyager.ViewModels;
+
 
 namespace GuideDesPlanètesDuPetitVoyager
 {
@@ -19,10 +22,15 @@ namespace GuideDesPlanètesDuPetitVoyager
     /// </summary>
     public partial class BoiteDeDialogue : Window
     {
+
+        public InfoBD ViewModelInfo;
+
         public BoiteDeDialogue(String dem)
         {
             InitializeComponent();
-            demande.Content = dem;
+            this.demande.Text = dem;
+            ViewModelInfo = new InfoBD();
+            DataContext = ViewModelInfo;
         }
     }
 }

@@ -19,9 +19,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.ColumnSpan="2" Height="75" >
             <Label Content="Voulez-vous vraiment"  Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Oceanic Drift Laser Italic" FontSize="19"/>
-            <Label Name ="demande" Content="quittez ?"  Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Oceanic Drift Laser Italic" FontSize="20"/>
+            <TextBlock Name ="demande" TextWrapping="Wrap" Width="200" Height="50"  Foreground="LightGray" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Oceanic Drift Laser Italic" FontSize="18"/>
         </StackPanel>
-        <Button Grid.Column="0" Grid.Row="1" Content="OUI" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="NON" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0"/>
+        <Button Grid.Column="0" Grid.Row="1" Content="OUI" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0" Command="{Binding ClickYes}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="NON" FontFamily="Oceanic Drift Laser Italic" Margin="7,0,7,0" Command="{Binding ClickNo}"/>
     </Grid>
 </Window>

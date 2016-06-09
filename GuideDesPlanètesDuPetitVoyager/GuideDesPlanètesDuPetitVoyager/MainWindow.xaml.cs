@@ -23,14 +23,13 @@ namespace GuideDesPlanètesDuPetitVoyager
     {
         public ListPlanete ViewModelUnivers;
 
-
-        public List<Planete> lPlanete { get; set; }
+        
         public MainWindow()
         {
             InitializeComponent();
             ViewModelUnivers = new ListPlanete();
             DataContext = ViewModelUnivers;
         }
-
+        
     }
 }

@@ -25,6 +25,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private Fajout add { get; set; }
         private FEdit edit { get; set; }
+        private BoiteDeDialogue bd { get; set; }
 
 
         private bool AlreadyExiste = false;
@@ -91,6 +92,11 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             EventClick.GetClick().Handler -= CloseEditView;
         }
 
+        private void CloseBd(object sender , EventArgs e)
+        {
+            bd.Close();
+            EventClick.GetClick().Handler -= CloseBd;
+        }
 
         #endregion
 
@@ -103,17 +109,21 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             add = new Fajout();
             add.Name = "Ajout";
             add.ShowDialog();
+            AlreadyExiste = false;
+
+       //     if (Univers.Where(add.ViewModelAjout.Planete.Nom))
+        //        AlreadyExiste = true;
+          //requete link a refaire   
 
             if (add.ViewModelAjout.CLickOnAdd == true)
             {
                 foreach (Planete p in Univers.ToList())
              {
 
-                if (add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
-                {
-                    AlreadyExiste = true;
-                }
-                else { AlreadyExiste = false; }
+                    if (add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
+                    {
+                        AlreadyExiste = true;
+                    }
             }
 
             if(AlreadyExiste == true)
@@ -158,9 +168,14 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private void OnDeleteCommand(object obj)
         {
-           Univers.Remove(Planete);
-            NotifyPropertyChanged("Univers");
-           
+            EventClick.GetClick().Handler += CloseBd;
+            bd = new BoiteDeDialogue("supprimer cette planete ?");
+            bd.ShowDialog();
+            if (bd.ViewModelInfo._valid == true)
+            {
+                Univers.Remove(Planete);
+                NotifyPropertyChanged("Univers");
+            }
         }
 
 
