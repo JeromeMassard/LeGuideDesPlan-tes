@@ -8,3 +8,8 @@ C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.csprojResolveAssemblyReference.cache
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.dll
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\obj\Debug\UniverseBuilder.pdb
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\EntityFramework.dll
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\EntityFramework.xml
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\bin\Debug\fr\EntityFramework.resources.dll

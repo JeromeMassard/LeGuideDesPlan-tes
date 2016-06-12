@@ -27,17 +27,24 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private FEdit edit { get; set; }
         private BoiteDeDialogue bd { get; set; }
 
-
+        
         private bool AlreadyExiste = false;
-
+        private string _textrecherche;
+        public string TextRecherche
+        {
+            get { return _textrecherche; }
+            set
+            {
+                _textrecherche = value;
+                NotifyPropertyChanged("TextRecherche");
+            }
+        }
     
 
         private Planete _planete;
         private ObservableCollection<Planete> _univers;  // liste des planètes.
 
-      //  private ObservableCollection<Planete> Lp; // Liste de planete apres recherche.
-
-    //    private List<Planete> ajoutPlanete { get; set; }
+        
 
         public Planete Planete
         {
@@ -57,21 +64,21 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             set { _univers = value; }
         }
         
-     
+        public ObservableCollection<Planete> Lp { get; set; } //liste des planêtes rechercher
 
      
 
         public ListPlanete()
         {
             Univers = PlaneteMaker.AllPlaneteEntiteToPlanete(PlaneteDAO.GetAllPlanete());
-            
 
+            TextRecherche = "Voyager...";
             OnAddCommande = new DelegateCommande(OnAddAction, CanExecuteAdd);
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
             OnDeleteCommande = new DelegateCommande(OnDeleteCommand, CanDeleteCommand);
 
-       //     ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
-         //   ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
+           ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
+           ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
            
         }
 
@@ -111,13 +118,16 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             add.ShowDialog();
             AlreadyExiste = false;
 
-       //     if (Univers.Where(add.ViewModelAjout.Planete.Nom))
-        //        AlreadyExiste = true;
+            //     if (Univers.Where(add.ViewModelAjout.Planete.Nom))
+            //        AlreadyExiste = true;
+
+       //     AlreadyExiste = (from Planete p in Univers where add.ViewModelAjout.Planete.Nom.Equals(p.Nom) select );
+                
           //requete link a refaire   
 
             if (add.ViewModelAjout.CLickOnAdd == true)
             {
-                foreach (Planete p in Univers.ToList())
+                foreach (Planete p in Univers)
              {
 
                     if (add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
@@ -198,42 +208,42 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         #region Search
 
-        private void OnTextSearch (object o)
+        public void OnTextSearch (object o)
         {
-            
+            TextRecherche = "";
         }
 
         private void OnSearchAction(object o)
-        {
-            List<Planete> Lp = new List<Planete>();
-          /*  foreach (Planete p in Univers)
-                if (p.Nom.Equals(/*Nom de la zone de recup du nom*))
+        { 
+            foreach (Planete p in Univers)
+            {
+                if (TextRecherche.Equals(p.Nom))
                 {
-                    Lp.Add(p);
-                    Univers = Lp;         
-              }*/
+                    Planete = p;
+                }
+                
+            }
+            if (Planete == null) 
+            {
+                Info bd = new Info("Aucune planète ne correspond à votre recherche."); //creer une fenetre info 
+                bd.ShowDialog();
+            }
         }
 
 
        
         
 
-/* futur amelioration pour recherche
         private bool CanChangeTextSearch(object o)
         {
             return true;
         }
 
-        private bool CanSearch(object o) {
-            if (Lp.Count() == 0)
-            {
-                Info bd = new Info("Aucune planète ne correspond à votre recherche."); //creer une fenetre info 
-                bd.ShowDialog();
-                return false;
-            }
-            else
+        private bool CanSearch(object o)
+        {
+            
                 return true;
-        }*/
+        }
         #endregion
         
     }

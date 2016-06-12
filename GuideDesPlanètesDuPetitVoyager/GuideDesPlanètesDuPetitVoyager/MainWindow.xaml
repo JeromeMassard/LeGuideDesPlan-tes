@@ -114,9 +114,8 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-                <TextBox Name="recherche" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14"  >Voyager...</TextBox>
-    
-            <Button Grid.Column="1">
+            <TextBox Text="{Binding .TextRecherche , UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14" />
+            <Button Grid.Column="1" Command="{Binding ClickOnSearch}">
                 <Image Source="Images/iconRech.png" />
             </Button>
 
