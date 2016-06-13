@@ -1,0 +1,10 @@
+NOM|VOLUME|MASSE|ANNEAUX|DECOUVERTE|SATELLITES|REVOLUTION|IMAGE
+Terre|1.08^12|5.97^24|Non|42|1|368|test
+Mercure|60.8^9|330.2^21|Non|-3000|0|88|test
+Venus|928^9|4.86^24|Non|1600|0|224|test
+Mars|163^9|641.8^21|Non|Antiquite|2|687|test
+Jupiter|1.43^15|1.9^27|3|Antiquite|67|4335|test
+Saturne|827^12|568^24|7|Prehistoire|200|10757|test
+Uranus|6.83^13|8.7^25|13|26/04/1781|27|30687|test
+Neptune|62.5^12|102^24|5|1846|14|60224|test
+Pluton|6.97^9|1^22|Non|1930|5|90487|test

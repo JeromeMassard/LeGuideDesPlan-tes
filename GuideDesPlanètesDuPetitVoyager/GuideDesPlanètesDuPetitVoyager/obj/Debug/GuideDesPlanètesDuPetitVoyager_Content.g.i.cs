@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("planim/ter.gif")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fichier%20de%20test/liste_planete.txt")]
 
 

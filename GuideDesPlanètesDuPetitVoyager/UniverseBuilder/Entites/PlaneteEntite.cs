@@ -10,17 +10,17 @@ namespace UniverseBuilder.Entites
     {
         public string Nom { get; set; }
 
-        public int Volume { get; set; }
+        public string Volume { get; set; }
 
-        public int Masse { get; set; }
+        public string Masse { get; set; }
 
         public string Anneaux { get; set; }
 
-        public int AnnéeDecouverte { get; set; }
+        public string AnnéeDecouverte { get; set; }
 
-        public int NbreSatellite { get; set; }
+        public string NbreSatellite { get; set; }
 
-        public int PeriodeRevo { get; set; }
+        public string PeriodeRevo { get; set; }
 
         public string PlanIm { get; set; }
     }

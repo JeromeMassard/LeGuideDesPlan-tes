@@ -22,7 +22,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Image Source="Images\fondliste.jpg" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
         <Image Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Source="Images\fond.jpg" HorizontalAlignment="Left"/>
         <Image Source="Images\Baniere2.jpg" Grid.ColumnSpan="2" />
@@ -58,7 +58,7 @@
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Anneaux :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.Anneaux , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="25"/>
+                        <TextBox Text="{Binding Planete.Anneaux , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="30"/>
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -67,7 +67,7 @@
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Découverte :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.AnnéeDecouverte , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="30"/>
+                        <TextBox Text="{Binding Planete.AnnéeDecouverte , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="65" TextAlignment="Right"/>
                     </StackPanel>
                 </Border>
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3">
@@ -79,7 +79,7 @@
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Révolution:" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.PeriodeRevo , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="50"/>
+                        <TextBox Text="{Binding Planete.PeriodeRevo , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="45"/>
                         <TextBox Text="jours" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -121,14 +121,33 @@
 
 
         </Grid>
-        <ListBox Name="ListP" ItemsSource="{Binding Univers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Planete}" Grid.Row="1" Grid.Column="0" Background="#7F000000" BorderThickness="0" Grid.RowSpan="3" Foreground="White" FontWeight="Bold" Margin="-5,22.8,5,-0.2" />
+        <Grid Grid.Row="2" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7.5*"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+                <ListBox Name="ListP" ItemsSource="{Binding Univers, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Planete}" Background="#7F000000" BorderThickness="0" Grid.Row="0" Grid.ColumnSpan="2" Foreground="White" FontWeight="Bold" Margin="0,0,0,10.4" Grid.RowSpan="2"/>
+           
+                <Button  FontSize="8.5" Grid.Row="2" Command="{Binding OnImportCommande}">
+                    <TextBlock Text="Importer des planètes" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+            <Button  FontSize="8.5" Grid.Row="2"  Grid.Column="1"  Command="{Binding OnExportCommande}" >
+            <TextBlock Text="Exporter  des planètes" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Button>
+
+        </Grid>
+
         <Grid Grid.Column="1" Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
+
             <Button Content="Ajouter" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="0" Padding="2.5" Command="{Binding OnAddCommande}" />
             <Button Content="Modifier" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1" Padding="2.5" Command="{Binding OnEditCommande}"/>
             <Button Content="Supprimer" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="2" Padding="2.5" Command="{Binding OnDeleteCommande}"/>

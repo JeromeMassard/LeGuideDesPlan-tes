@@ -10,12 +10,12 @@ namespace GuideDesPlanètesDuPetitVoyager
     public class Planete : NotifyPropertyChangedBase
     {
         private string _image;
-        private int _volume;
-        private int _masse;
+        private string _volume;
+        private string _masse;
         private string _anneaux;
-        private int _annee;
-        private int _periode;
-        private int _nbSat;
+        private string _annee;
+        private string _periode;
+        private string _nbSat;
 
         public string PlanIm
         {
@@ -31,7 +31,7 @@ namespace GuideDesPlanètesDuPetitVoyager
 
         public string Nom { get; set; }
 
-        public int Volume
+        public string Volume
         {
             get
             {
@@ -43,7 +43,7 @@ namespace GuideDesPlanètesDuPetitVoyager
             }
         }
 
-        public int Masse
+        public string Masse
         {
             get
             {
@@ -67,7 +67,7 @@ namespace GuideDesPlanètesDuPetitVoyager
             }
         }
 
-        public int AnnéeDecouverte
+        public string AnnéeDecouverte
         {
             get
             {
@@ -79,7 +79,7 @@ namespace GuideDesPlanètesDuPetitVoyager
             }
         }
 
-        public int NbreSatellite
+        public string NbreSatellite
         {
             get
             {
@@ -91,7 +91,7 @@ namespace GuideDesPlanètesDuPetitVoyager
             }
         }
 
-        public int PeriodeRevo
+        public string PeriodeRevo
         {
             get
             {
@@ -108,6 +108,11 @@ namespace GuideDesPlanètesDuPetitVoyager
         public override string ToString()
         {
             return string.Format("{0}", Nom);
+        }
+
+        public string Resume()
+        {
+            return string.Format("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}", Nom, Volume, Masse, Anneaux, AnnéeDecouverte, NbreSatellite, PeriodeRevo, PlanIm);
         }
         public Planete()
         {

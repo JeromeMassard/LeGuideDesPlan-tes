@@ -1,0 +1,9 @@
+Lune		   7.3^22	0	    42		  Terre	      29
+Triton		   2.1^22	0	    1846	  Neptune     5
+Charon		   1^21		0	    1978	  Pluton      6
+Io		   8.93^22	0	    1610	  Jupiter     1.7
+Europe		   4.8^22	0	    1610	  Jupiter     3.5
+Callisto	   1^23		0	    1610	  Jupiter     16
+Titan		   1^23		0	    1655	  Saturne     16
+Phobos		   1^16		0	    1877	  Mars	      0.3
+Oberon		   3^21		0	    1787	  Uranus      13.5

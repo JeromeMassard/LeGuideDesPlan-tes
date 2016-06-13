@@ -19,6 +19,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnEditCommande { get; set; }
         public DelegateCommande OnDeleteCommande { get; set; }
 
+
+        public DelegateCommande OnImportCommande { get; set; }
+        public DelegateCommande OnExportCommande { get; set; }
+
         public DelegateCommande ClickOnTextSearch { get; set; }
         public DelegateCommande ClickOnSearch { get; set; }
 
@@ -77,8 +81,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
             OnDeleteCommande = new DelegateCommande(OnDeleteCommand, CanDeleteCommand);
 
-           ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
-           ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
+
+            OnImportCommande = new DelegateCommande(ImportAction, CanImport);
+            OnExportCommande = new DelegateCommande(ExportAction, CanExport);
+
+            ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
+            ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
            
         }
 
@@ -217,7 +225,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         { 
             foreach (Planete p in Univers)
             {
-                if (TextRecherche.Equals(p.Nom))
+                if (TextRecherche.ToLower().Equals(p.Nom.ToLower()))
                 {
                     Planete = p;
                 }
@@ -229,9 +237,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 bd.ShowDialog();
             }
         }
-
-
-       
         
 
         private bool CanChangeTextSearch(object o)
@@ -245,7 +250,72 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 return true;
         }
         #endregion
-        
+
+        #region Import/Export
+
+        #region Import
+
+        private void ImportAction(object o)
+        {
+            Planete PlaneteImporte;
+            string line;
+            string[] part = new string[8];
+            System.IO.StreamReader ReadForImport = new System.IO.StreamReader(@"C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\liste_planete.txt");
+            line = ReadForImport.ReadLine(); // eleve la ligne des infos colonnes
+            while((line = ReadForImport.ReadLine()) != null)
+            {
+
+                PlaneteImporte = new Planete();
+                part = line.Split('|');
+                PlaneteImporte.Nom = part[0];
+                PlaneteImporte.Volume = part[1];
+                PlaneteImporte.Masse = part[2];
+                PlaneteImporte.Anneaux = part[3];
+                PlaneteImporte.AnnéeDecouverte = part[4];
+                PlaneteImporte.NbreSatellite = part[5];
+                PlaneteImporte.PeriodeRevo = part[6];
+                PlaneteImporte.PlanIm = part[7];
+
+                Univers.Add(PlaneteImporte);
+                
+            }
+            ReadForImport.Close();
+            
+        }
+        private bool CanImport(object o)
+        {
+            return true;
+        } // return true
+
+
+        #endregion
+        #region Export
+        private void ExportAction(object o)
+        {
+            System.IO.StreamWriter WriteForExport = new System.IO.StreamWriter(@"C:\Users\jmddu_000\Desktop\Liste_Planetes.txt");
+            WriteForExport.WriteLine("NOM|VOLUME|MASSE|ANNEAUX|DECOUVERTE|SATELLITES|REVOLUTION|IMAGE");
+            foreach (Planete p in Univers)
+                WriteForExport.WriteLine(p.Resume());
+            WriteForExport.Close();
+
+            // informer l'uilisateur de la creation du ficher 
+            
+            Info IWrite = new Info("Le ficher d'exportation a été créer et placer sur votre bureau");
+            IWrite.ShowDialog();
+
+        }
+
+        private bool CanExport(object o)
+        {
+            return true;
+        }// return true
+
+        #endregion
+
+        #endregion
+
+
+
     }
 
 }
