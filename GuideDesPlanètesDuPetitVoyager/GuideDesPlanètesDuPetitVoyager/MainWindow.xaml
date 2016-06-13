@@ -44,14 +44,14 @@
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Volume :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.Volume ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Bottom" Width="50" Margin="0,0,0,0.4"/>
+                        <TextBox Text="{Binding Planete.Volume ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Bottom" Width="60" Margin="0,0,0,0.4"/>
                         <TextBox Text="Km3" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" >
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Masse :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.Masse , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="75"/>
+                        <TextBox Text="{Binding Planete.Masse , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="60"/>
                         <TextBox Text="Tonnes" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center" Width="40"/>
                     </StackPanel>
                 </Border>
@@ -91,7 +91,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Padding="3" Margin="0,2,0,2">
+                <Border CornerRadius="10" BorderBrush="Gray" BorderThickness="2" Padding="3" Margin="0,2,0,2" >
                     <Border.Background>
                         <SolidColorBrush Color="Black" Opacity="0"/>
                     </Border.Background>
@@ -114,7 +114,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="{Binding .TextRecherche , UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14" />
+            <TextBox Name="TextRecherche" Text="{Binding .TextRecherche , UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14" GotFocus="{Binding }" LostFocus="TextRecherche_LostFocus"  />
             <Button Grid.Column="1" Command="{Binding ClickOnSearch}">
                 <Image Source="Images/iconRech.png" />
             </Button>

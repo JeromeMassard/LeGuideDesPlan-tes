@@ -30,6 +30,5 @@ namespace GuideDesPlanètesDuPetitVoyager
             ViewModelUnivers = new ListPlanete();
             DataContext = ViewModelUnivers;
         }
-        
     }
 }

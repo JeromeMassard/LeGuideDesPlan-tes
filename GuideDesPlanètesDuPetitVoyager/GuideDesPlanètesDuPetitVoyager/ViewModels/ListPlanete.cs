@@ -19,13 +19,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnEditCommande { get; set; }
         public DelegateCommande OnDeleteCommande { get; set; }
 
-
         public DelegateCommande OnImportCommande { get; set; }
         public DelegateCommande OnExportCommande { get; set; }
-
-        public DelegateCommande ClickOnTextSearch { get; set; }
         public DelegateCommande ClickOnSearch { get; set; }
 
+   
+
+        
 
         private Fajout add { get; set; }
         private FEdit edit { get; set; }
@@ -81,11 +81,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
             OnDeleteCommande = new DelegateCommande(OnDeleteCommand, CanDeleteCommand);
 
-
+            
             OnImportCommande = new DelegateCommande(ImportAction, CanImport);
             OnExportCommande = new DelegateCommande(ExportAction, CanExport);
-
-            ClickOnTextSearch = new DelegateCommande(OnTextSearch, CanChangeTextSearch);
+            
             ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
            
         }
@@ -215,12 +214,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #endregion
 
         #region Search
-
-        public void OnTextSearch (object o)
-        {
-            TextRecherche = "";
-        }
-
         private void OnSearchAction(object o)
         { 
             foreach (Planete p in Univers)
@@ -236,17 +229,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 Info bd = new Info("Aucune planète ne correspond à votre recherche."); //creer une fenetre info 
                 bd.ShowDialog();
             }
-        }
-        
 
-        private bool CanChangeTextSearch(object o)
-        {
-            return true;
+            TextRecherche = "Voyager ...";
         }
+    
 
         private bool CanSearch(object o)
         {
-            
                 return true;
         }
         #endregion
