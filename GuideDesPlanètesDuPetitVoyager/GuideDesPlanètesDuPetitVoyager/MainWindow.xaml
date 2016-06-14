@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GuideDesPlanètesDuPetitVoyager"
         xmlns:vm="clr-namespace:GuideDesPlanètesDuPetitVoyager.ViewModels"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:exp="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
         mc:Ignorable="d"
         Title="Le guide des planètes du petit Voyager" Height="350" Width="525" Background="Black"
         Icon="Images\icon.png"
@@ -114,7 +116,13 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="TextRecherche" Text="{Binding .TextRecherche , UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14" GotFocus="{Binding }" LostFocus="TextRecherche_LostFocus"  />
+            <TextBox Name="text" Text="{Binding .TextRecherche , UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" FontStyle="Italic" Background="#99000000" Foreground="Azure" FontSize="14"  >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="GotFocus">
+                        <exp:CallMethodAction MethodName="GotFocusAction" TargetObject="{Binding}"></exp:CallMethodAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
             <Button Grid.Column="1" Command="{Binding ClickOnSearch}">
                 <Image Source="Images/iconRech.png" />
             </Button>

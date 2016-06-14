@@ -19,7 +19,7 @@ namespace GuideDesPlanètesDuPetitVoyager.Event
             }
             return _click;
         }
-        #endregion  
+        #endregion
 
         public event EventHandler Handler;
 
@@ -30,5 +30,6 @@ namespace GuideDesPlanètesDuPetitVoyager.Event
                 Handler(this, e);
             }
         }
+
     }
 }

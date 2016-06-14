@@ -35,8 +35,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converteur\ConvertPS.cs" />
     <Compile Include="Event\EventClick.cs" />
     <Compile Include="FEdit.xaml.cs">
       <DependentUpon>FEdit.xaml</DependentUpon>
@@ -64,6 +66,7 @@
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
     <Compile Include="Maker\PlaneteMaker.cs" />
+    <Compile Include="Utility.cs" />
     <Compile Include="ViewModels\AjoutPlanete.cs" />
     <Compile Include="ViewModels\InfoBD.cs" />
     <Compile Include="ViewModels\ListPlanete.cs" />

@@ -3,18 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using UniverseBuilder.Entites;
 using GuideDesPlanètesDuPetitVoyager.Maker;
 using UniverseBuilder;
+using System.Data;
 using GuideDesPlanètesDuPetitVoyager.Event;
+using System.Windows.Input;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
     public class ListPlanete : NotifyPropertyChangedBase
     {
-
+        #region DelegateCommande
         public DelegateCommande OnAddCommande { get; set; }
         public DelegateCommande OnEditCommande { get; set; }
         public DelegateCommande OnDeleteCommande { get; set; }
@@ -23,9 +27,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnExportCommande { get; set; }
         public DelegateCommande ClickOnSearch { get; set; }
 
-   
-
-        
+        #endregion
 
         private Fajout add { get; set; }
         private FEdit edit { get; set; }
@@ -70,17 +72,20 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         
         public ObservableCollection<Planete> Lp { get; set; } //liste des planêtes rechercher
 
-     
+        private string connstr = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();
+
 
         public ListPlanete()
         {
+            SqlConnection conn = new SqlConnection(connstr);
             Univers = PlaneteMaker.AllPlaneteEntiteToPlanete(PlaneteDAO.GetAllPlanete());
 
+            
             TextRecherche = "Voyager...";
             OnAddCommande = new DelegateCommande(OnAddAction, CanExecuteAdd);
             OnEditCommande = new DelegateCommande(OnEditCommand, CanEditCommand);
             OnDeleteCommande = new DelegateCommande(OnDeleteCommand, CanDeleteCommand);
-
+           
             
             OnImportCommande = new DelegateCommande(ImportAction, CanImport);
             OnExportCommande = new DelegateCommande(ExportAction, CanExport);
@@ -90,6 +95,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
 
+        public void GotFocusAction()
+        {
+            TextRecherche = "";
+        }
 
 
         #region close
@@ -137,7 +146,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 foreach (Planete p in Univers)
              {
 
-                    if (add.ViewModelAjout.Planete.Nom.Equals(p.Nom))
+                    if (add.ViewModelAjout.Planete.Nom.ToLower().Equals(p.Nom.ToLower()))
                     {
                         AlreadyExiste = true;
                     }
@@ -150,7 +159,55 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             }
             else
             {
-                    Univers.Add(add.ViewModelAjout.Planete);
+                    SqlConnection conn = new SqlConnection(connstr);
+                    // creation de la sql commande qui modifie l'element de la planete
+                    SqlCommand cmdNewplanete = new SqlCommand("UniversDATABase.uspNewPlanete", conn);
+                    cmdNewplanete.CommandType = CommandType.StoredProcedure;
+                    //ajout Nom
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteNom", SqlDbType.NVarChar, 50));
+                    cmdNewplanete.Parameters[@"PlaneteNom"].Value = add.ViewModelAjout.Planete.Nom;
+                    //ajout Volume
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteVolume", SqlDbType.NVarChar, 20));
+                    cmdNewplanete.Parameters[@"PlaneteVolume"].Value = add.ViewModelAjout.Planete.Volume;
+                    //ajout Masse
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteMasse", SqlDbType.NVarChar, 20));
+                    cmdNewplanete.Parameters[@"PlaneteMasse"].Value = add.ViewModelAjout.Planete.Masse;
+                    //ajout anneaux
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteAnneaux", SqlDbType.NVarChar, 20));
+                    cmdNewplanete.Parameters[@"PlaneteAnneaux"].Value = add.ViewModelAjout.Planete.Anneaux;
+                    //ajoutdecouverte
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteDecouverte", SqlDbType.NVarChar, 15));
+                    cmdNewplanete.Parameters[@"PlaneteDecouverte"].Value = add.ViewModelAjout.Planete.AnnéeDecouverte;
+                    //ajout Nb satellite
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteNBSat", SqlDbType.NVarChar, 3));
+                    cmdNewplanete.Parameters[@"PlaneteNBSat"].Value = add.ViewModelAjout.Planete.NbreSatellite;
+                    //ajout PeriodeRevo
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlanetePeriodeRevo", SqlDbType.NVarChar,10 ));
+                    cmdNewplanete.Parameters[@"PlanetePeriodeRevo"].Value = add.ViewModelAjout.Planete.PeriodeRevo;
+                    //ajout PathIm
+                    cmdNewplanete.Parameters.Add(new SqlParameter("@PlanetePathIm", SqlDbType.NVarChar, 300));
+                    cmdNewplanete.Parameters[@"PlanetePathIm"].Value = add.ViewModelAjout.Planete.PlanIm;
+
+                    //Parametre de sorti
+  
+                    cmdNewplanete.Parameters["@PlaneteNom"].Direction = ParameterDirection.Output;
+
+
+                    try
+                    {
+                        conn.Open();
+                        cmdNewplanete.ExecuteNonQuery();
+
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                 // Univers.Add(add.ViewModelAjout.Planete);
                     NotifyPropertyChanged("Univers");
             }
             }
@@ -195,7 +252,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             }
         }
 
-
+        #region Can
         private bool CanExecuteAdd(object o)
         {
             return true;
@@ -210,7 +267,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         {
             return Planete != null;
         }
-
+        #endregion
         #endregion
 
         #region Search
@@ -229,10 +286,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 Info bd = new Info("Aucune planète ne correspond à votre recherche."); //creer une fenetre info 
                 bd.ShowDialog();
             }
-
-            TextRecherche = "Voyager ...";
+            TextRecherche = "Voyager...";
         }
-    
+
 
         private bool CanSearch(object o)
         {
@@ -251,11 +307,12 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             string[] part = new string[8];
             System.IO.StreamReader ReadForImport = new System.IO.StreamReader(@"C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\liste_planete.txt");
             line = ReadForImport.ReadLine(); // eleve la ligne des infos colonnes
-            while((line = ReadForImport.ReadLine()) != null)
+            while ((line = ReadForImport.ReadLine()) != null)
             {
 
                 PlaneteImporte = new Planete();
                 part = line.Split('|');
+                
                 PlaneteImporte.Nom = part[0];
                 PlaneteImporte.Volume = part[1];
                 PlaneteImporte.Masse = part[2];
@@ -264,9 +321,61 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 PlaneteImporte.NbreSatellite = part[5];
                 PlaneteImporte.PeriodeRevo = part[6];
                 PlaneteImporte.PlanIm = part[7];
-
+                
                 Univers.Add(PlaneteImporte);
                 
+                 
+                /*
+                //version base de donné sql
+                SqlConnection conn = new SqlConnection(connstr);
+                // creation de la sql commande qui modifie l'element de la planete
+                SqlCommand cmdNewplanete = new SqlCommand("UniversDATABase.uspNewPlanete", conn);
+                cmdNewplanete.CommandType = CommandType.StoredProcedure;
+                //ajout Nom
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteNom", SqlDbType.NVarChar, 50));
+                cmdNewplanete.Parameters[@"PlaneteNom"].Value = part[0];
+                //ajout Volume
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteVolume", SqlDbType.NVarChar, 20));
+                cmdNewplanete.Parameters[@"PlaneteVolume"].Value = part[1];
+                //ajout Masse
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteMasse", SqlDbType.NVarChar, 20));
+                cmdNewplanete.Parameters[@"PlaneteMasse"].Value = part[2];
+                //ajout anneaux
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteAnneaux", SqlDbType.NVarChar, 20));
+                cmdNewplanete.Parameters[@"PlaneteAnneaux"].Value = part[3];
+                //ajoutdecouverte
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteDecouverte", SqlDbType.NVarChar, 15));
+                cmdNewplanete.Parameters[@"PlaneteDecouverte"].Value = part[4];
+                //ajout Nb satellite
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlaneteNBSat", SqlDbType.NVarChar, 3));
+                cmdNewplanete.Parameters[@"PlaneteNBSat"].Value = part[5];
+                //ajout PeriodeRevo
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlanetePeriodeRevo", SqlDbType.NVarChar, 10));
+                cmdNewplanete.Parameters[@"PlanetePeriodeRevo"].Value = part[6];
+                //ajout PathIm
+                cmdNewplanete.Parameters.Add(new SqlParameter("@PlanetePathIm", SqlDbType.NVarChar, 300));
+                cmdNewplanete.Parameters[@"PlanetePathIm"].Value = part[7];
+
+                //Parametre de sorti
+
+                cmdNewplanete.Parameters["@PlaneteNom"].Direction = ParameterDirection.Output;
+
+
+                try
+                {
+                    conn.Open();
+                    cmdNewplanete.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }*/
+
             }
             ReadForImport.Close();
             
@@ -300,11 +409,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }// return true
 
         #endregion
-
         #endregion
-
-
-
     }
 
 }
