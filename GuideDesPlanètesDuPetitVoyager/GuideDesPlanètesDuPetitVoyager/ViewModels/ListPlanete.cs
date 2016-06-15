@@ -30,7 +30,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #endregion
 
         private Fajout add { get; set; }
-        private FEdit edit { get; set; }
+        private Fajout edit { get; set; }
         private BoiteDeDialogue bd { get; set; }
 
         
@@ -128,8 +128,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void OnAddAction(object o)
         {
             EventClick.GetClick().Handler += CloseAddView;
-
-            add = new Fajout();
+            Planete PlaneteAjout = new Planete();
+            add = new Fajout(PlaneteAjout);
             add.Name = "Ajout";
             add.ShowDialog();
             AlreadyExiste = false;
@@ -219,19 +219,20 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         {
             EventClick.GetClick().Handler += CloseEditView;
 
-            edit = new FEdit(Planete);
+            edit = new Fajout(Planete); // Factorisation de code. on utilise la même fenetre que pour l'ajout de planete 
+            edit.ViewModelAjout.AddOrModify = "Valider"; // changement du contenu bouton 
             edit.Name = "Edit";
             edit.ShowDialog();
-            if (edit.ViewModelEdit.CLickOnAdd == true)
+            if (edit.ViewModelAjout.CLickOnAdd == true)
             {
                 NotifyPropertyChanged("Planete");
                 foreach (Planete p in Univers.ToList())
                 {
-                    if (edit.ViewModelEdit.Planete.Nom.Equals(p.Nom))
+                    if (edit.ViewModelAjout.Planete.Nom.Equals(p.Nom))
                     {
 
                         Univers.Remove(p);
-                        Univers.Add(edit.ViewModelEdit.Planete);
+                        Univers.Add(edit.ViewModelAjout.Planete);
                         NotifyPropertyChanged("Univers");
                     }
                 }

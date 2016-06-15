@@ -24,10 +24,10 @@ namespace GuideDesPlanètesDuPetitVoyager
     {
         public AjoutPlanete ViewModelAjout;
         
-        public Fajout()
+        public Fajout(Planete _planete)
         {
             InitializeComponent();
-            ViewModelAjout = new AjoutPlanete(new Planete());
+            ViewModelAjout = new AjoutPlanete(_planete);
             DataContext = ViewModelAjout;
         }
 

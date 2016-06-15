@@ -59,9 +59,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Event\EventClick.cs" />
-    <Compile Include="FEdit.xaml.cs">
-      <DependentUpon>FEdit.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
@@ -75,10 +72,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Fajout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

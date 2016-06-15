@@ -90,7 +90,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Ajouter"  Grid.Column="0" Command="{Binding OnAddNew}" />
+            <Button Content="{Binding AddOrModify}"  Grid.Column="0" Command="{Binding OnAddNew}" />
             <Button Content="Annuler"  Grid.Column="1" Command="{Binding OnCancel}" />
 
             

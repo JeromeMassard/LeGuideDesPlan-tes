@@ -14,15 +14,17 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnCancel { get; set; }
         public DelegateCommande OnModify { get; set; }
 
+        public string AddOrModify { get; set; }   // Changement du contenu du bouton de validation
+
         public bool CLickOnAdd = false;
 
         public Planete Planete { get; set; }
 
         public AjoutPlanete(Planete _planete)
         {
+            AddOrModify = "Ajouter";
             OnAddNew = new DelegateCommande(OnAddAction, CanAdd);
             OnCancel = new DelegateCommande(OnCancelCommand, CanCancel);
-            OnModify = new DelegateCommande(OnModifyAction, CanModify);
             Planete = _planete;
         }
 
@@ -50,21 +52,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private bool CanCancel(object obj)
         {
-            return true;
-        }
-        #endregion
-
-        #region Modify
-
-        private void OnModifyAction(object obj)
-        {
-            CLickOnAdd = true;
-
-            EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
-        }
-        private bool CanModify(object obj)
-        {
-
             return true;
         }
         #endregion

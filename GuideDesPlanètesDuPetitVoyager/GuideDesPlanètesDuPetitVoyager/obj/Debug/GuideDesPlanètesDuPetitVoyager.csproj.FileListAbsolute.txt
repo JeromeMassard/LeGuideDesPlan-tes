@@ -46,8 +46,6 @@ C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\obj\Debug\GuideDesPlanètesDuPetitVoyager.g.resources
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\obj\Debug\GuideDesPlanètesDuPetitVoyager.Properties.Resources.resources
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\obj\Debug\GuideDesPlanètesDuPetitVoyager.csproj.GenerateResource.Cache
-C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\obj\Debug\FEdit.g.cs
-C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\obj\Debug\FEdit.baml
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\Microsoft.Expression.Interactions.dll
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\System.Windows.Interactivity.dll
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\Microsoft.Expression.Interactions.xml
