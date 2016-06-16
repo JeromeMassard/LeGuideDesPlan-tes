@@ -18,6 +18,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Data.Common;
 using ClassLibrary1.Extension;
+using GuideDesPlanètesDuPetitVoyager;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
@@ -80,7 +81,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         public ListPlanete()
         {
-   
+
             Univers = PlaneteMaker.AllPlaneteEntiteToPlanete(PlaneteDAO.GetAllPlanete());
 
             TextRecherche = "Voyager...";
@@ -93,7 +94,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             OnExportCommande = new DelegateCommande(ExportAction, CanExport);
 
             ClickOnSearch = new DelegateCommande(OnSearchAction, CanSearch);
-      
+
         }
 
 
@@ -155,9 +156,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 }
                 else
                 {
-                    
+
                     SqlConnection conn = new SqlConnection(connectionString);
-                   
+
                     conn.Open();
                     Planete planeteAdd = add.ViewModelAjout.Planete;
                     string SQLcmdAdd = "INSERT INTO [UniversDATABase].[Planete] VALUES (@PNom,@PVol,@PMas,@PAnn,@PDec,@PSat,@PRev,@PIma);";
@@ -175,8 +176,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                     conn.Close();
 
                     NotifyPropertyChanged("Univers");
-            
+
                 }
+                Refresh();
             }
 
 
@@ -197,7 +199,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
 
                 SqlConnection conn = new SqlConnection(connectionString);
-
                 conn.Open();
                 string SQLcmdAdd = "UPDATE [UniversDATABase].[Planete] SET PlaneteVolume = @PVol,PlaneteMasse = @PMas,PlaneteAnneaux = @PAnn, PlaneteDecouverte = @PDec, PlaneteNBSat = @PSat, PlanetePeriodeRevo = @PRev, PlanetePathIm = @PIma WHERE PlaneteNom = @PNom";
 
@@ -213,12 +214,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
                 command.ExecuteReader();
                 conn.Close();
-                
+
                 NotifyPropertyChanged("Planete");
                 NotifyPropertyChanged("Univers");
 
 
             }
+            Refresh();
         }
 
 
@@ -231,9 +233,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             if (bd.ViewModelInfo._valid == true)
             {
                 SqlConnection conn = new SqlConnection(connectionString);
-                   
+
                 conn.Open();
-                
+
                 string SQLcmdAdd = "DELETE FROM [UniversDATABase].[Planete] WHERE PlaneteNom = @PNom"; //test
                 var command = new SqlCommand(SQLcmdAdd, conn);
                 command.Parameters.AddWithValue("@PNom", Planete.Nom);
@@ -241,6 +243,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 conn.Close();
                 NotifyPropertyChanged("Univers");
             }
+            Refresh();
         }
 
         #region Can
@@ -399,7 +402,41 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #endregion
         #endregion
 
-        
+        //test refresh
+        public void Refresh()
+        {
+            Univers.Clear();
+
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "SELECT * FROM [UniversDATABase].[Planete]";
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var planeteE = new Planete();
+                            planeteE.Nom = reader["PlaneteNom"].ToString();
+                            planeteE.Volume = reader["PlaneteVolume"].ToString();
+                            planeteE.Masse = reader["PlaneteMasse"].ToString();
+                            planeteE.Anneaux = reader["PlaneteAnneaux"].ToString();
+                            planeteE.AnnéeDecouverte = reader["PlaneteDecouverte"].ToString();
+                            planeteE.NbreSatellite = reader["PlaneteNBSat"].ToString();
+                            planeteE.PeriodeRevo = reader["PlanetePeriodeRevo"].ToString();
+                            planeteE.PlanIm = reader["PlanetePathIm"].ToString();
+
+                            Univers.Add(planeteE);
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
 
