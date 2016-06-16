@@ -9,13 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "ClassLibrary1\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniverseBuilder", "UniverseBuilder\UniverseBuilder.csproj", "{87107C61-C8AC-4E41-A402-1E6D913988BA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBaseScript", "DataBaseScript", "{76B53A80-4499-420C-945E-0CF70C143A71}"
-	ProjectSection(SolutionItems) = preProject
-		BaseDataBase.sql = BaseDataBase.sql
-	EndProjectSection
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UniversDATABase", "UniversDATABase\UniversDATABase.sqlproj", "{48898E89-A8F4-4632-B28D-A82963BEC0D7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,12 +27,6 @@ Global
 		{87107C61-C8AC-4E41-A402-1E6D913988BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87107C61-C8AC-4E41-A402-1E6D913988BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87107C61-C8AC-4E41-A402-1E6D913988BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48898E89-A8F4-4632-B28D-A82963BEC0D7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

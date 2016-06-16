@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fichier%20de%20test/liste_planete.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("universdatabase.mdf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("universdatabase_log.ldf")]
 
 

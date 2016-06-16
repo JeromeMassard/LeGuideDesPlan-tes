@@ -76,7 +76,7 @@
             <StackPanel Grid.ColumnSpan="2" Grid.Row="6" >
                 <Label Content="Image de la Planète : " Foreground="White" FontSize="14" Margin="5,0,0,0"/>
                 <DockPanel Margin="5,0,5,0">
-                    <Button Content="Parcourir..." DockPanel.Dock="Right"/>
+                    <Button Content="Parcourir..." DockPanel.Dock="Right" Command="{Binding LoadCommand}"/>
                     <TextBox Height="20" Text="{Binding Planete.PlanIm}" />
                 </DockPanel>
             </StackPanel>

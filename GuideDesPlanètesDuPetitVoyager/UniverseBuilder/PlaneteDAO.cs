@@ -7,7 +7,7 @@ using UniverseBuilder;
 using System.Data.SqlClient;
 using System.Data;
 using UniverseBuilder.Entites;
-
+using System.Data.OleDb;
 
 namespace UniverseBuilder
 {
@@ -15,31 +15,40 @@ namespace UniverseBuilder
     {
         public static List<PlaneteEntite> GetAllPlanete()
         {
-            List<PlaneteEntite> lP = new List<PlaneteEntite>();
-           /* string connstr = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
+            List<PlaneteEntite> listOfPlanete = new List<PlaneteEntite>();
 
-            string strRecup = "SELECT PlaneteNOM, PlaneteVolume, PlaneteMasse, PlaneteAnneaux, PlaneteDecouverte, PlaneteNBSat, PlanetePeriodeRevo, PlanetePathIm from UniversDATABase.Planete";
-
-            using (SqlConnection connection = new SqlConnection(connstr))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                try
+                connection.Open();
+                string sql = "SELECT * FROM [UniversDATABase].[Planete]";
+                using (var command = new SqlCommand(sql, connection))
                 {
-                    /*
-                    connection.Open(); // ouverture de la connection
-                    MyAdapter = new SqlCommand("SELECT puis reste de la requete", connection);
-                    MyAdapter.Fill(MyDataSet, "NomTable");// dataset rempli avec le resultat du dessus
-                    MyDataGrid.DataSource = MyDataSet;// Ici MyDataGrid = le nom du private System.Windows.Forms.DataGrid utilisé
-                    MyDataGrid.DataMember = "NomTable";// Ici MyDataGrid = le nom du private System.Windows.Forms.DataGrid utilisé
-                    Connection.Close();// fermeture de la connection
-                    
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var planeteE = new PlaneteEntite();
+                            planeteE.Nom = reader["PlaneteNom"].ToString();
+                            planeteE.Volume = reader["PlaneteVolume"].ToString();
+                            planeteE.Masse = reader["PlaneteMasse"].ToString();
+                            planeteE.Anneaux = reader["PlaneteAnneaux"].ToString();
+                            planeteE.AnnéeDecouverte = reader["PlaneteDecouverte"].ToString();
+                            planeteE.NbreSatellite = reader["PlaneteNBSat"].ToString();
+                            planeteE.PeriodeRevo = reader["PlanetePeriodeRevo"].ToString();
+                            planeteE.PlanIm = reader["PlanetePathIm"].ToString();
+
+                            listOfPlanete.Add(planeteE);
+                        }
+                    }
                 }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-          
-             }*/
-            return lP;
+                
+
+                connection.Close();
+                
+                return listOfPlanete;
+            }
         }
     }
+
 }

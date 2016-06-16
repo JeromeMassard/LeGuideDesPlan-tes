@@ -14,7 +14,7 @@ namespace GuideDesPlanètesDuPetitVoyager
         {
             string returnValue = null;
 
-            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["UniversDATABase.Properties.Settings.connString"];
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["UniversDATABase.Properties.Settings.UniversDATABaseConnectionString"];
 
             if (settings != null)
                 returnValue = settings.ConnectionString;

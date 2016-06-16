@@ -68,3 +68,5 @@ C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\ko\System.Windows.Interactivity.resources.dll
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\UniversDATABase.mdf
+C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\GuideDesPlanètesDuPetitVoyager\bin\Debug\UniversDATABase_log.ldf

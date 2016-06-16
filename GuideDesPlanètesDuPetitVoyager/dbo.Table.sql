@@ -1,0 +1,13 @@
+﻿CREATE SCHEMA[UniversDATABase]
+	AUTHORIZATION [dbo];
+GO
+CREATE TABLE [UniversDATABase].[Planete](
+	[PlaneteNom] NVARCHAR(50) NOT NULL PRIMARY KEY,
+	[PlaneteVolume] NVARCHAR(20) NOT NULL DEFAULT '0',
+	[PlaneteMasse] NVARCHAR(20) NOT NULL DEFAULT '0',
+	[PlaneteAnneaux] NVARCHAR(20) NOT NULL DEFAULT 'Non',
+	[PlaneteDecouverte] NVARCHAR(15) NOT NULL DEFAULT '?',
+	[PlaneteNBSat] NVARCHAR(3) NOT NULL DEFAULT '0',
+	[PlanetePeriodeRevo] NVARCHAR(10) NOT NULL DEFAULT '0',
+	[PlanetePathIm] NVARCHAR(300) NOT NULL DEFAULT 'Aucune Image'	
+);

@@ -27,11 +27,11 @@ namespace GuideDesPlanètesDuPetitVoyager.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\jmddu_000\\Documents\\" +
-            "LeGuideDesPlan-tes\\GuideDesPlanètesDuPetitVoyager\\UniversDATABase\\UniversDATABas" +
-            "e.sqlproj;Integrated Security=True;Connect Timeout=30")]
-        public string connString {
+            "LeGuideDesPlan-tes\\GuideDesPlanètesDuPetitVoyager\\UniverseBuilder\\UniversDATABas" +
+            "e.mdf;Integrated Security=True")]
+        public string UniversDATABaseConnectionString {
             get {
-                return ((string)(this["connString"]));
+                return ((string)(this["UniversDATABaseConnectionString"]));
             }
         }
     }

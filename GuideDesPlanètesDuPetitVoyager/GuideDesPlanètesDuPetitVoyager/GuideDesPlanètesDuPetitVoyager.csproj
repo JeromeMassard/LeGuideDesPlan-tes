@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,7 +64,11 @@
       <DependentUpon>Info.xaml</DependentUpon>
     </Compile>
     <Compile Include="Maker\PlaneteMaker.cs" />
-    <Compile Include="Utility.cs" />
+    <Compile Include="UniversDATABaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniversDATABaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AjoutPlanete.cs" />
     <Compile Include="ViewModels\InfoBD.cs" />
     <Compile Include="ViewModels\ListPlanete.cs" />
@@ -117,6 +122,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="UniversDATABaseDataSet.xsc">
+      <DependentUpon>UniversDATABaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UniversDATABaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UniversDATABaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UniversDATABaseDataSet.xss">
+      <DependentUpon>UniversDATABaseDataSet.xsd</DependentUpon>
+    </None>
     <Resource Include="Police\oceanicdriftlaserital.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

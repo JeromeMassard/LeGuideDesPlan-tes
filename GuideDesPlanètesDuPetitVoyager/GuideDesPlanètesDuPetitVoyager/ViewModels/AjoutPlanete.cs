@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GuideDesPlanètesDuPetitVoyager.Event;
+using Microsoft.Win32;
 
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
@@ -13,6 +14,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public DelegateCommande OnAddNew { get; set; }
         public DelegateCommande OnCancel { get; set; }
         public DelegateCommande OnModify { get; set; }
+        public DelegateCommande LoadCommand { get; set; }
 
         public string AddOrModify { get; set; }   // Changement du contenu du bouton de validation
 
@@ -25,6 +27,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             AddOrModify = "Ajouter";
             OnAddNew = new DelegateCommande(OnAddAction, CanAdd);
             OnCancel = new DelegateCommande(OnCancelCommand, CanCancel);
+            LoadCommand = new DelegateCommande(OnLoadCommand, CanLoadCommand);
             Planete = _planete;
         }
 
@@ -54,6 +57,30 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         {
             return true;
         }
+        #endregion
+       
+        #region load
+
+        private void OnLoadCommand(object o)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Selectionner une image";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                Planete.PlanIm = op.FileName;
+                NotifyPropertyChanged("Planete");
+                }
+        }
+
+        private bool CanLoadCommand(object o)
+        {
+            return true;
+        }
+
+
         #endregion
 
     }
