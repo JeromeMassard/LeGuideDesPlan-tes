@@ -42,7 +42,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         private bool AlreadyExiste = false;
         private string _textrecherche;
-        public string TextRecherche
+        public string TextRecherche     
         {
             get { return _textrecherche; }
             set
@@ -53,11 +53,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
         private Planete _planete;
-        private ObservableCollection<Planete> _univers;  // liste des planètes.
-
-
-
-        public Planete Planete
+        public Planete Planete          
         {
             get { return _planete; }
             set
@@ -69,12 +65,15 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 OnDeleteCommande.RaiseCanExecuteChanged();
             }
         }
+
+        private ObservableCollection<Planete> _univers;  // liste Observable des planètes.
         public ObservableCollection<Planete> Univers
         {
             get { return _univers; }
             set { _univers = value; }
         }
 
+        //Chemin de connection a la base de données
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
 
 
@@ -98,7 +97,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
 
 
-        public void GotFocusAction()
+        public void GotFocusAction() //action lors du clic dans la Textbox de recherche.
         {
             TextRecherche = "";
         }
@@ -110,7 +109,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             add.Close();
             EventClick.GetClick().Handler -= CloseAddView;
         }
-
 
         private void CloseEditView(object sender, EventArgs e)
         {
@@ -351,6 +349,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
                 }
                 ReadForImport.Close();
+                Refresh();
             }
         }
         private bool CanImport(object o)
@@ -370,20 +369,23 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
             if (dr == DialogResult.OK)
             {
-                cheminDossier = new DirectoryInfo(fbd.SelectedPath).Name;
+                cheminDossier = fbd.SelectedPath + @"\ListPlanete.txt";
             }
             if (cheminDossier != "")// eviter les chemins null
             {
                 System.IO.StreamWriter WriteForExport = new System.IO.StreamWriter(cheminDossier);
                 WriteForExport.WriteLine("NOM|VOLUME|MASSE|ANNEAUX|DECOUVERTE|SATELLITES|REVOLUTION|IMAGE");
+                
                 foreach (Planete p in Univers)
-                    WriteForExport.WriteLine(p.Resume());
+                {
+                    WriteForExport.WriteLine(p.Resume());                   
+                }
                 WriteForExport.Close();
-
                 // informer l'uilisateur de la creation du ficher 
 
                 Info IWrite = new Info("Le fichier a bien été exporté.");
                 IWrite.ShowDialog();
+                
             }
             else
             {

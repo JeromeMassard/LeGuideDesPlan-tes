@@ -173,17 +173,17 @@
     <Resource Include="Images\AjoutFond.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PlanIm\nep.jpe" />
-    <Resource Include="PlanIm\sat.jpe" />
+    <Resource Include="PlanIm\Jup.png" />
+    <Resource Include="PlanIm\Mar.png" />
+    <Resource Include="PlanIm\Mer.png" />
+    <Resource Include="PlanIm\Nep.png" />
+    <Resource Include="PlanIm\Plu.png" />
+    <Resource Include="PlanIm\Sat.png" />
+    <Resource Include="PlanIm\Ura.png" />
+    <Resource Include="PlanIm\Ven.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="PlanIm\Ter.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="PlanIm\mars.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="PlanIm\ter.gif" />
+    <Resource Include="PlanIm\Ter.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

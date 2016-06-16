@@ -116,7 +116,13 @@ namespace GuideDesPlanètesDuPetitVoyager
         }
         public Planete()
         {
-                
+            Volume ="0";
+            Masse ="0";
+            Anneaux = "Non";
+            AnnéeDecouverte = "?";
+            NbreSatellite = "0";
+            PeriodeRevo ="0";
+            PlanIm = "Aucune Image";
         }
     }
 }

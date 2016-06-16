@@ -13,22 +13,22 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
     {
         public DelegateCommande OnAddNew { get; set; }
         public DelegateCommande OnCancel { get; set; }
-        public DelegateCommande OnModify { get; set; }
         public DelegateCommande LoadCommand { get; set; }
 
         public string AddOrModify { get; set; }   // Changement du contenu du bouton de validation
 
-        public bool CLickOnAdd = false;
+        public bool CLickOnAdd = false; 
 
         public Planete Planete { get; set; }
 
         public AjoutPlanete(Planete _planete)
         {
             AddOrModify = "Ajouter";
-            OnAddNew = new DelegateCommande(OnAddAction, CanAdd);
-            OnCancel = new DelegateCommande(OnCancelCommand, CanCancel);
-            LoadCommand = new DelegateCommande(OnLoadCommand, CanLoadCommand);
+            OnAddNew = new DelegateCommande(OnAddAction, CanAdd); //Commande du bouton Ajouter et Modifier
+            OnCancel = new DelegateCommande(OnCancelCommand, CanCancel); //Commande du bouton Annuler
+            LoadCommand = new DelegateCommande(OnLoadCommand, CanLoadCommand); //Commande du bouton parcourir 
             Planete = _planete;
+           
         }
 
         #region Add
@@ -36,7 +36,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void OnAddAction(object obj)
         {
             CLickOnAdd = true;
-
+            
             EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
         private bool CanAdd(object obj)
@@ -45,20 +45,19 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         }
         #endregion
 
+
         #region Cancel
         private void OnCancelCommand(object obj)
         {
              EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
-
-
-
         private bool CanCancel(object obj)
         {
             return true;
         }
         #endregion
-       
+ 
+              
         #region load
 
         private void OnLoadCommand(object o)

@@ -47,9 +47,9 @@
                 <Label Content="Km3"  Foreground="white" FontSize="14"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" Background="#4C000000">
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0" Background="#4C000000">
                 <Label Content="Anneaux : " Foreground="White" FontSize="14" BorderThickness="0" />
-                <TextBox Name="nbAnneaux" Text="{Binding Planete.Anneaux}" Width="25" FontSize="14" VerticalAlignment="Center" TextAlignment="Center"/>
+                <TextBox Name="nbAnneaux" Text="{Binding Planete.Anneaux}" Width="35" FontSize="14" VerticalAlignment="Center" TextAlignment="Center"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0" Background="#4C000000">
                 <Label Content="Masse : " Foreground="White" FontSize="14" BorderThickness="0"/>
