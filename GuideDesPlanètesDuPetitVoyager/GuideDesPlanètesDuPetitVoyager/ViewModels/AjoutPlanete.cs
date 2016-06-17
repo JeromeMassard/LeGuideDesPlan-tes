@@ -18,8 +18,20 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public string AddOrModify { get; set; }   // Changement du contenu du bouton de validation
 
         public bool CLickOnAdd = false;
-        
-        public Planete Planete { get; set; }
+
+        private Planete _planete;
+        public Planete Planete
+        {
+            get { return _planete; }
+            set
+            {
+                _planete = value;
+                NotifyPropertyChanged("Planete");
+                NotifyPropertyChanged("ListPlanete");
+                OnAddNew.RaiseCanExecuteChanged();
+            }
+        }
+
 
         public AjoutPlanete(Planete _planete)
         {
@@ -36,8 +48,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         private void OnAddAction(object obj)
         {
             CLickOnAdd = true;
-            
-            EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
+            if (Planete.Nom != null)
+                EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
+            else
+            { 
+                    Info iadd = new Info("Tous les champs doivent être completé pour ajouter une nouvelle planete");
+                    iadd.ShowDialog();
+            }
         }
         private bool CanAdd(object obj)
         {
@@ -49,6 +66,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #region Cancel
         private void OnCancelCommand(object obj)
         {
+            CLickOnAdd = false; // cas ou on clic sur cancel après l'affichage de iadd
              EventClick.GetClick().OnButtonPressedHandler(EventArgs.Empty);
         }
         private bool CanCancel(object obj)

@@ -74,12 +74,11 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             get { return _univers; }
             set { _univers = value; }
         }
-
-        string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();//Chemin de connection a la base de données
+        
+        public string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();//Chemin de connection a la base de données
 
         public ListPlanete()
         {
-
             Univers = PlaneteMaker.AllPlaneteEntiteToPlanete(PlaneteDAO.GetAllPlanete());
 
             TextRecherche = "Voyager...";

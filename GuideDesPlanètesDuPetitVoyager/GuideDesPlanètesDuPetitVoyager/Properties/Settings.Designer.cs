@@ -26,7 +26,7 @@ namespace GuideDesPlanètesDuPetitVoyager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\jmddu_000\\Documents\\" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" +
             "LeGuideDesPlan-tes\\GuideDesPlanètesDuPetitVoyager\\UniverseBuilder\\UniversDATABas" +
             "e.mdf;Integrated Security=True")]
         public string UniversDATABaseConnectionString {
