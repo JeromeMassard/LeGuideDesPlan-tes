@@ -302,6 +302,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             Planete PlaneteImporte;
             string line;
             string chemin = "";
+
             string[] part = new string[8];
 
 
@@ -316,15 +317,16 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             }
             if (chemin != "")
             {
-
                 System.IO.StreamReader ReadForImport = new System.IO.StreamReader(chemin);
                 line = ReadForImport.ReadLine(); // eleve la ligne des infos colonnes
+                line = ReadForImport.ReadLine(); 
                 while ((line = ReadForImport.ReadLine()) != null)
                 {
-
+                    if (line.Equals(""))
+                        line = ReadForImport.ReadLine();
                     PlaneteImporte = new Planete();
                     part = line.Split('|');
-
+                    
                     PlaneteImporte.Nom = part[0];
                     PlaneteImporte.Volume = part[1];
                     PlaneteImporte.Masse = part[2];
@@ -365,11 +367,13 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                         command.ExecuteReader();
                         conn.Close();
                         
-                    }
-                    AlreadyExiste = false; //remise a zero du booleen de test
+                      }
+                     AlreadyExiste = false; //remise a zero du booleen de test
                 }
                 ReadForImport.Close();
                 Refresh();
+                Info IImp = new Info("Toutes les planète du fichier ont été importées");
+                IImp.ShowDialog();
             }
         }
         private bool CanImport(object o)
