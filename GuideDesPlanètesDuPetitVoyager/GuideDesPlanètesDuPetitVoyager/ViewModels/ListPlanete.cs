@@ -145,7 +145,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                     }
                 }
 
-                if (AlreadyExiste == true)
+                if (AlreadyExiste )
                 {
                     Info info = new Info("La planète fait déjà parti de l'univers et n'as donc pas été ajouté");
                     info.ShowDialog();
@@ -309,6 +309,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             op.Title = "Selectionner un fichier";
             op.Filter = "Fichier texte(.txt)|*.txt|" +
               "*.*|*.*";
+
             if (op.ShowDialog() == true)
             {
                 chemin = op.FileName;
@@ -334,28 +335,38 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                     PlaneteImporte.PlanIm = part[7];
 
 
-                    string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                    string path = (System.IO.Path.GetDirectoryName(executable));
-                    AppDomain.CurrentDomain.SetData("DataDirectory", path);
-                    SqlConnection conn = new SqlConnection(connectionString);
-                    conn.Open();
+                    
+                    
+                    foreach (Planete p in Univers) ///test si la planete existe
+                    {
+                        if (PlaneteImporte.Nom.ToLower().Equals(p.Nom.ToLower()))
+                            AlreadyExiste = true;
+                    }
 
-                    string SQLcmdAdd = "INSERT INTO [UniversDATABase].[Planete] VALUES (@PNom,@PVol,@PMas,@PAnn,@PDec,@PSat,@PRev,@PIma);";
+                    if  (!(AlreadyExiste))
+                        {
+                        string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                        string path = (System.IO.Path.GetDirectoryName(executable));
+                        AppDomain.CurrentDomain.SetData("DataDirectory", path);
+                        SqlConnection conn = new SqlConnection(connectionString);
+                        conn.Open();
 
-                    var command = new SqlCommand(SQLcmdAdd, conn);
-                    command.Parameters.AddWithValue("@PNom", PlaneteImporte.Nom);
-                    command.Parameters.AddWithValue("@PVol", PlaneteImporte.Volume);
-                    command.Parameters.AddWithValue("@PMas", PlaneteImporte.Masse);
-                    command.Parameters.AddWithValue("@PAnn", PlaneteImporte.Anneaux);
-                    command.Parameters.AddWithValue("@PDec", PlaneteImporte.AnnéeDecouverte);
-                    command.Parameters.AddWithValue("@PSat", PlaneteImporte.NbreSatellite);
-                    command.Parameters.AddWithValue("@PRev", PlaneteImporte.PeriodeRevo);
-                    command.Parameters.AddWithValue("@PIma", PlaneteImporte.PlanIm);
-                    command.ExecuteReader();
-                    conn.Close();
+                        string SQLcmdAdd = "INSERT INTO [UniversDATABase].[Planete] VALUES (@PNom,@PVol,@PMas,@PAnn,@PDec,@PSat,@PRev,@PIma);";
 
-                    NotifyPropertyChanged("Univers");
-
+                        var command = new SqlCommand(SQLcmdAdd, conn);
+                        command.Parameters.AddWithValue("@PNom", PlaneteImporte.Nom);
+                        command.Parameters.AddWithValue("@PVol", PlaneteImporte.Volume);
+                        command.Parameters.AddWithValue("@PMas", PlaneteImporte.Masse);
+                        command.Parameters.AddWithValue("@PAnn", PlaneteImporte.Anneaux);
+                        command.Parameters.AddWithValue("@PDec", PlaneteImporte.AnnéeDecouverte);
+                        command.Parameters.AddWithValue("@PSat", PlaneteImporte.NbreSatellite);
+                        command.Parameters.AddWithValue("@PRev", PlaneteImporte.PeriodeRevo);
+                        command.Parameters.AddWithValue("@PIma", PlaneteImporte.PlanIm);
+                        command.ExecuteReader();
+                        conn.Close();
+                        
+                    }
+                    AlreadyExiste = false; //remise a zero du booleen de test
                 }
                 ReadForImport.Close();
                 Refresh();
@@ -387,7 +398,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 
                 foreach (Planete p in Univers)
                 {
-                    WriteForExport.WriteLine(p.Resume());                   
+                    WriteForExport.WriteLine(p.Resume()+"\n");
                 }
                 WriteForExport.Close();
                 // informer l'uilisateur de la creation du ficher 
@@ -413,7 +424,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         #endregion
         #endregion
 
-        //test refresh
+        //actualise l'univers
         public void Refresh()
         {
             Univers.Clear();

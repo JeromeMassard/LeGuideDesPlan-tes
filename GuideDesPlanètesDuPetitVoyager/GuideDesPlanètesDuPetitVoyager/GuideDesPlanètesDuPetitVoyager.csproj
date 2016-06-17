@@ -69,7 +69,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UniversDATABaseDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Utility.cs" />
     <Compile Include="ViewModels\AjoutPlanete.cs" />
     <Compile Include="ViewModels\InfoBD.cs" />
     <Compile Include="ViewModels\ListPlanete.cs" />

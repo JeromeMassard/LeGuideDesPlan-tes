@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:exp="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
         mc:Ignorable="d"
-        Title="Le guide des planètes du petit Voyager" Height="350" Width="525" Background="Black"
+        Title="Le guide des planètes du petit Voyager" Height="350" Width="530" Background="Black"
         Icon="Images\icon.png"
         Name="LeGuideDesPlaneteDuPetitVoyager"
         d:DataContext="{d:DesignInstance vm:ListPlanete, IsDesignTimeCreatable=True}"
