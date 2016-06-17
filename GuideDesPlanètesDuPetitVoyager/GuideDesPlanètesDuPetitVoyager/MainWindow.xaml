@@ -11,8 +11,7 @@
         Title="Le guide des planètes du petit Voyager" Height="350" Width="530" Background="Black"
         Icon="Images\icon.png"
         Name="LeGuideDesPlaneteDuPetitVoyager"
-        d:DataContext="{d:DesignInstance vm:ListPlanete, IsDesignTimeCreatable=True}"
-        >
+        d:DataContext="{d:DesignInstance vm:ListPlanete, IsDesignTimeCreatable=True}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
@@ -46,7 +45,7 @@
                 <Border CornerRadius="10" BorderBrush="Gray" Background="Black" BorderThickness="2" Padding="3" Margin="5,0,5,0">
                     <StackPanel Orientation="Horizontal" >
                         <TextBox Text="Volume :" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Planete.Volume ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Bottom" Width="60" Margin="0,0,0,0.4"/>
+                        <TextBox Text="{Binding Planete.Volume ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Background="Black" TextAlignment="Right" Foreground="CornflowerBlue" BorderThickness="0" VerticalAlignment="Center" Width="60" />
                         <TextBox Text="Km3" IsReadOnly="True" Background="Black" Foreground="#FF1CC7B7" BorderThickness="0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Border>
