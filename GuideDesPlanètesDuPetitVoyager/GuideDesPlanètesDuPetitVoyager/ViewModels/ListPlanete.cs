@@ -74,8 +74,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             get { return _univers; }
             set { _univers = value; }
         }
-        
-        public string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();//Chemin de connection a la base de données
+        //chemin de connection
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UniversDATABase.mdf;Integrated Security=True";
 
         public ListPlanete()
         {
@@ -152,7 +152,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 }
                 else
                 {
-
+                    string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    string path = (System.IO.Path.GetDirectoryName(executable));
+                    AppDomain.CurrentDomain.SetData("DataDirectory", path);
                     SqlConnection conn = new SqlConnection(connectionString);
 
                     conn.Open();
@@ -193,7 +195,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                 NotifyPropertyChanged("Planete");
                 Planete modifAApliquer = edit.ViewModelAjout.Planete;
 
-
+                string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string path = (System.IO.Path.GetDirectoryName(executable));
+                AppDomain.CurrentDomain.SetData("DataDirectory", path);
                 SqlConnection conn = new SqlConnection(connectionString);
                 conn.Open();
                 string SQLcmdAdd = "UPDATE [UniversDATABase].[Planete] SET PlaneteVolume = @PVol,PlaneteMasse = @PMas,PlaneteAnneaux = @PAnn, PlaneteDecouverte = @PDec, PlaneteNBSat = @PSat, PlanetePeriodeRevo = @PRev, PlanetePathIm = @PIma WHERE PlaneteNom = @PNom";
@@ -228,6 +232,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             bd.ShowDialog();
             if (bd.ViewModelInfo._valid == true)
             {
+                string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string path = (System.IO.Path.GetDirectoryName(executable));
+                AppDomain.CurrentDomain.SetData("DataDirectory", path);
                 SqlConnection conn = new SqlConnection(connectionString);
 
                 conn.Open();
@@ -326,6 +333,10 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
                     PlaneteImporte.PeriodeRevo = part[6];
                     PlaneteImporte.PlanIm = part[7];
 
+
+                    string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    string path = (System.IO.Path.GetDirectoryName(executable));
+                    AppDomain.CurrentDomain.SetData("DataDirectory", path);
                     SqlConnection conn = new SqlConnection(connectionString);
                     conn.Open();
 
@@ -407,6 +418,9 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         {
             Univers.Clear();
 
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

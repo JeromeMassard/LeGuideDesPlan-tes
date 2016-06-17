@@ -16,7 +16,12 @@ namespace UniverseBuilder
         public static List<PlaneteEntite> GetAllPlanete()
         {
 
-            string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();
+            //string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\UniversDATABase.mdf;Integrated Security=True";
+
+            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string path = (System.IO.Path.GetDirectoryName(executable));
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
             List<PlaneteEntite> listOfPlanete = new List<PlaneteEntite>();
 
