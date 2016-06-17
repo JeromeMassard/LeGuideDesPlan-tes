@@ -20,6 +20,8 @@ using System.Data.Common;
 using ClassLibrary1.Extension;
 using GuideDesPlanètesDuPetitVoyager;
 
+
+
 namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 {
     public class ListPlanete : NotifyPropertyChangedBase
@@ -73,10 +75,7 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
             set { _univers = value; }
         }
 
-        //Chemin de connection a la base de données
-        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
-
-
+        string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();//Chemin de connection a la base de données
 
         public ListPlanete()
         {
@@ -408,9 +407,6 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
         public void Refresh()
         {
             Univers.Clear();
-
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
-
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

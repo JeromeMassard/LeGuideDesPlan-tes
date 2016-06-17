@@ -17,8 +17,8 @@ namespace GuideDesPlanètesDuPetitVoyager.ViewModels
 
         public string AddOrModify { get; set; }   // Changement du contenu du bouton de validation
 
-        public bool CLickOnAdd = false; 
-
+        public bool CLickOnAdd = false;
+        
         public Planete Planete { get; set; }
 
         public AjoutPlanete(Planete _planete)

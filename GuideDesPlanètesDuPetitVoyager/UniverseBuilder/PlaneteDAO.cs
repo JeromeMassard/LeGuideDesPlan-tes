@@ -15,7 +15,9 @@ namespace UniverseBuilder
     {
         public static List<PlaneteEntite> GetAllPlanete()
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\jmddu_000\Documents\LeGuideDesPlan-tes\GuideDesPlanètesDuPetitVoyager\UniverseBuilder\UniversDATABase.mdf;Integrated Security=True";
+
+            string connectionString = GuideDesPlanètesDuPetitVoyager.Utility.GetConnectionString();
+
             List<PlaneteEntite> listOfPlanete = new List<PlaneteEntite>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
